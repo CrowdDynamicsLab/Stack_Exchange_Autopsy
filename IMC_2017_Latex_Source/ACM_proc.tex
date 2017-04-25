@@ -1,0 +1,260 @@
+% This is "sig-alternate.tex" V2.0 May 2012
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
+%
+% This example file demonstrates the use of the 'sig-alternate.cls'
+% V2.5 LaTeX2e document class file. It is for those submitting
+% articles to ACM Conference Proceedings WHO DO NOT WISH TO
+% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
+% The 'sig-alternate.cls' file will produce a similar-looking,
+% albeit, 'tighter' paper resulting in, invariably, fewer pages.
+%
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V2.5) produces:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) NO page numbers
+%
+% as against the acm_proc_article-sp.cls file which
+% DOES NOT produce 1) thru' 3) above.
+%
+% Using 'sig-alternate.cls' you have control, however, from within
+% the source .tex file, over both the CopyrightYear
+% (defaulted to 200X) and the ACM Copyright Data
+% (defaulted to X-XXXXX-XX-X/XX/XX).
+% e.g.
+% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
+% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
+%
+% ---------------------------------------------------------------------------------------------------------------
+% This .tex source is an example which *does* use
+% the .bib file (from which the .bbl file % is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission, you *NEED* to 'insert'
+% your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% ================= IF YOU HAVE QUESTIONS =======================
+% Questions regarding the SIGS styles, SIGS policies and
+% procedures, Conferences etc. should be sent to
+% Adrienne Griscti (griscti@acm.org)
+%
+% Technical questions _only_ to
+% Gerald Murray (murray@hq.acm.org)
+% ===============================================================
+%
+% For tracking purposes - this is V2.0 - May 2012
+
+\documentclass{sig-alternate-10pt}
+\usepackage{amsmath}
+
+\begin{document}
+%
+% --- Author Metadata here ---
+\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{Jointly Modeling Population and Content Growth in Stack Exchange Websites}
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE References or any Appendices.
+
+\numberofauthors{1} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Himel Dev\\
+       \affaddr{Department of Computer Science}\\
+       \affaddr{University of Illinois at Urbana-Chmapign (UIUC)}\\
+       \email{hdev3@illinois.edu}
+}
+% There's nothing stopping you putting the seventh, eighth, etc.
+% author on the opening page (as the 'third row') but we ask,
+% for aesthetic reasons that you place these 'additional authors'
+% in the \additional authors block, viz.
+\additionalauthors{Additional authors: John Smith (The Th{\o}rv{\"a}ld Group,
+email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
+(The Kumquat Consortium, email: {\texttt{jpkumquat@consortium.net}}).}
+\date{30 July 1999}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+%\begin{abstract}
+%We will write it later
+%\end{abstract}
+
+% A category with the (minimum) three required fields
+%\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+%\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+%\terms{Theory}
+
+%\keywords{population model, content model, Q\&A website}
+%\newpage
+%\section{Introduction}
+%\newpage
+\emph{\lq \lq A finite world can support only a finite population; therefore, population growth must eventually equal zero.\rq \rq} -- Garrett Hardin
+
+\section{Motivation}
+Interacting population based models have been successfully applied in a variety of domains to model population growth. In recent times, there has been an increasing interest in applying such models to explain the growth/decline in online social networks \cite{Ribeiro2014,Kumar2010}. While these existing models have been fairly successful in capturing population growth, they have some fundamental limitations such as incorporating largely unobservable factor(s), lack of interpretation in explaining growth, not incorporating observable content factors. %artificial segmentation of population \cite{Kumar2010}
+\newline
+\newline
+Kumar et al. \cite{Kumar2010} introduced a two-sided (two types of users: blue and green) market model based on the hypothesis that a blue user decides to join a platform based on the platforms' current proportion of green users and vice versa. However, in most social networks, only a small fraction of user community is visible to a potential user, and the proportion of a particular type of user in the network remains largely unobservable. 
+\newline
+\newline
+Ribeiro et al. \cite{Ribeiro2014} proposed a daily active user (DAU) prediction model based on a set of reaction-diffusion-decay equations describing the interactions between active members, inactive members, and not-yet-members. The proposed model captures the number of daily active users using a set of growth parameters. However, these growth parameters provide little insight in understanding the actual reasons behind the growth/decline in DAU. 
+\newline
+\newline
+We observe that while population interaction can model population growth in certain social networks, it provides little insight in explaining growth. We hypothesize that population content interaction is a more effective means to model and explain growth in both population and content. Growth models based on population content interaction can reveal the interdependency between the two, i.e., how growth/decline in one affects the other. Such insights are valuable for content based networks, in particular Q\&A networks. In this paper, we focus on jointly modeling population and growth in Stack Exchange websites, revealing the interdependency between the two.
+
+
+
+\section{Population Content Interaction}
+We present a set of population content inductions/reactions to capture the interaction between population and content in Stack Exchange websites. %We derive these reactions based on the economic concept: \emph{factors of production}. In economics, factors of production are what is used in the production process to produce output. 
+
+
+\begin{table}[hbt]
+	\centering
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Symbol} & \textbf{Interpretation}\\ \hline
+	$U_q(t)$ & \# of users asking questions at time $t$\\ \hline
+	$U_a(t)$ & \# of users answering questions at time $t$\\ \hline
+	$U_c(t)$ & \# of users making comments at time $t$\\ \hline
+	$\Delta N_q(t)$ & \# of active questions at time $t$\\ \hline
+	$\Delta N_a(t)$ & \# of answers to active questions at time $t$\\ \hline
+	$\Delta N_c^q(t)$ & \# of comments to active questions at time $t$\\ \hline
+	$\Delta N_c^a(t)$ & \# of comments to active answers at time $t$\\ \hline
+	$\Delta N_{+v}^q(t)$ & \# of upvotes to active questions at time $t$\\ \hline
+	$\Delta N_{+v}^a(t)$ & \# of upvotes to active answers at time $t$\\ \hline
+	$\alpha_{i, j}$ & Coefficient of $i$th input in $j$th reaction\\ \hline
+	$\beta_{i, j}$ & Coefficient of $i$th output in $j$th reaction\\ \hline
+	 \end{tabular}
+    \caption{Notations in reactions}
+\end{table}
+
+\noindent \textbf{I. Answer Reaction:} In a Stack Exchange website, there are two key factors in generating answers: questions, and users who answer questions (aka answeres). Based on these two factors, we assert the following reaction to generate answers.
+  
+  \begin{equation*}
+      \alpha_{1, 1} \Delta N_q + \alpha_{2, 1} U_a \rightarrow \beta_{1, 1} \Delta N_a
+  \end{equation*}
+  
+\noindent \textbf{II. Question Reaction:} In a Stack Exchange website, there is a single key factor in generating questions: users who ask questions (aka askers). Based on this single factor, we assert the following reaction to generate questions.
+  
+  \begin{equation*}
+  \alpha_{1, 2} U_q \rightarrow \beta_{1, 2} \Delta N_q
+  \end{equation*}
+  
+\noindent \textbf{III. Answerer Induction:} In a Stack Exchange website, there are two key factors in inducing the number of answerers at time $t$: number of answerers at time $(t-1)$, and the utility received by these answerers at time $(t-1)$. Now, in a simplistic model the utility received by the answerers at time $(t-1)$ can be captured using the number of active questions at time $(t-1)$. Based on these factors, we assert the following induction to induce the number of answerers at time $t$.
+  
+  \begin{equation*}
+  \alpha_{1, 3} U_a(t-1) + \alpha_{2, 3} \Delta N_q(t-1) \rightarrow \beta_{1, 3} U_a(t)
+  \end{equation*}
+  
+\noindent An extended interaction model where askers' utility is defined in terms of questions, comments to answers, and upvotes to answers is as follows.
+  
+  \begin{equation*}
+  \begin{split}
+  & \alpha_{1, 3} U_a(t-1) + \alpha_{2, 3} \Delta N_q(t-1) + \alpha_{3, 3} \Delta N_c^a(t-1)\\ 
+  & + \alpha_{4, 3} \Delta N_{+v}^a(t-1) \rightarrow \beta_{1, 3} U_a(t) 
+  \end{split}
+  \end{equation*}
+  
+  
+\noindent \textbf{IV. Asker Induction:} In a Stack Exchange website, there are two key factors in inducing the number of askers at time $t$: number of askers at time $(t-1)$, and the utility received by these askers at time $(t-1)$. Now, in a simplistic model the utility received by the askers at time $(t-1)$ can be captured using the number of active answers at time $(t-1)$. Based on these factors, we assert the following reaction to induce the number of askers at time $t$. 
+
+    \begin{equation*}
+    \alpha_{1, 4} U_q(t-1) + \alpha_{2, 4} \Delta N_a(t-1) \rightarrow \beta_{1, 4} U_q(t)
+    \end{equation*}
+  
+\noindent An extended interaction model where askers' utility is defined in terms of answers, comments to questions, and upvotes to questions is as follows.
+
+    \begin{equation*}
+    \begin{split}
+    & \alpha_{1, 4} U_q(t-1) + \alpha_{2, 4} \Delta N_a(t-1) + \alpha_{3, 4} \Delta N_c^q(t-1)\\
+    & + \alpha_{4, 4} \Delta N_{+v}^q(t-1) \rightarrow \beta_{1, 4} U_q(t) 
+    \end{split}
+    \end{equation*}
+
+\section{Growth Model}
+A production function captures the relationship between the output of a production process, and the inputs or factors of production. We use the Cobb-Douglas production function to capture the relationship between the output, and the inputs or factors in our inductions/reactions. The Cobb-Douglas function is of following form.
+
+    \begin{equation*}
+    Y = A\prod_{i=1}^{n} X_i^{\lambda_i}
+    \end{equation*}
+    
+\noindent Here, $Y$ represents total production at time $t$, $X_i$ represents total $i$th input at time $t$, $\lambda_i$ represents output elasticity of the $i$th input, and $A$ represents total factor productivity.
+\newline
+\newline
+Based on our population content inductions/reactions and the Cobb-Douglas production function, we derive the following set of relationships between population and content. 
+
+    \begin{equation}
+    N_a = A_1 N_q^{\lambda_{1, 1}} U_a^{\lambda_{2, 1}}
+    \end{equation}
+    
+    \begin{equation}
+    N_q = A_2 U_q^{\lambda_{1, 2}}
+    \end{equation}
+    
+    \begin{equation}
+    U_a(t) = A_3 [U_a(t-1)]^{\lambda_{1, 3}} [N_q(t-1)]^{\lambda_{2, 3}}
+    \end{equation}
+    
+    \begin{equation}
+    U_q(t) = A_4 [U_q(t-1)]^{\lambda_{1, 4}} [N_q(t-1)]^{\lambda_{2, 4}} 
+    \end{equation}
+
+\noindent In addition to these relationships, we incorporate resource constraints on our growth model. More specifically, in a Stack Exchange website, every user $u$ has a fixed resource capacity $r_u$ at a given time, which he/she can use to ask questions, answer questions, and make comments. We assume voting activity consumes negligible resources. Now, the resource capacity distribution $P_r$ can be defined as the probability that a user--chosen uniformly at random from the set of all users--has resource capacity $c$. The mean resource capacity $z$ can be calculated as $z = \sum_{r}{rP_r}$. To incorporate resource constraint in our growth model in a simplistic manner, we hold the assumption that every user has the mean resource capacity $z$. This assumption is based on the mean field approximation, which allows us to focus on the overall resource capacity of the entire population. 
+
+\begin{equation}
+\Delta N_q(t) + \Delta N_a(t) + \Delta N_c(t) = zU(t)
+\end{equation}
+
+
+%
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{abbrv}
+\bibliography{sample}  % sigproc.bib is the name of the Bibliography in this case
+
+\end{document}
