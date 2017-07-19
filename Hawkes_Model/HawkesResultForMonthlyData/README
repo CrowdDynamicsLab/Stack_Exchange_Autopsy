@@ -1,0 +1,23 @@
+Created by Jiahui @ 07/18/17
+
+1st Attempt: 
+	Question is only influenced by previous questions
+	Answer is only influenced by previous answers
+	Comment is only influenced by previous comments
+
+2nd Attempt:
+	Question is influenced by previous questions & answers
+	Answer is influenced by previous questions & answers
+	Comment is influenced by previous answers & comments
+
+3rd Attempt:
+	Question is influenced by previous questions & answers & comments
+	Answer is influenced by previous questions & answers & comments
+	Comment is influenced by previous questions & answers & comments
+	
+
+
+Based on the generated parameters & plots:
+	1. There is no obvious evidence showing that Question is influenced by any previous activities.
+	2. In most channels, Answer is influenced by previous questions & answers & comments, but it is mostly influenced by previous answers.
+	3. In most channels, Comments is strongly influenced by previous questions & answers & comments.
