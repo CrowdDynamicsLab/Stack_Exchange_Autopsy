@@ -52,7 +52,7 @@ def parseEvents(path):
                 tmp_list.append([int(row[1]), 1, int(row[3])])
                 tmp_list.append([int(row[1]), 2, int(row[4])])
                 previous_channel = row[0]
-    #print(np.matrix(all_channels))
+#print(np.matrix(all_channels))
 
 
 
@@ -109,7 +109,7 @@ def J_a(x):
         expected_a.append([int(observed_a[i][0]),tmp_sum])
         final_a.append([int(observed_a[i][0]),tmp_sum])
         dif += (observed_a[i][1] - tmp_sum) ** 2
-
+    
     return float(dif)/2
 
 # J_c defines the equation for generating comments based on previous questions & answers & comments
@@ -161,11 +161,11 @@ def main(argv):
     outwriter = csv.writer(out, delimiter=',')
 
 
-    #observed_q represents the observed questions, and it is in the format of [[time_1,intensity_1],...,[time_n,intensity_n]]
-    #expected_q represents the expected questions, and it is in the format of [[time_1,intensity_1],...,[time_n,intensity_n]]
+#observed_q represents the observed questions, and it is in the format of [[time_1,intensity_1],...,[time_n,intensity_n]]
+#expected_q represents the expected questions, and it is in the format of [[time_1,intensity_1],...,[time_n,intensity_n]]
 
-    for channel in all_channels:
-        channel_name = channel[0]
+for channel in all_channels:
+    channel_name = channel[0]
         observed_q[:] = []
         observed_a[:] = []
         observed_c[:] = []
@@ -180,12 +180,12 @@ def main(argv):
                 observed_a.append([event[0],event[2]])
             elif event[1] == 2:
                 observed_c.append([event[0],event[2]])
-        #print(np.matrix(observed_q))
-        #print(np.matrix(observed_a))
-        #print(np.matrix(observed_c))
-        if len(observed_q) <= T1:
-            continue
-
+    #print(np.matrix(observed_q))
+    #print(np.matrix(observed_a))
+    #print(np.matrix(observed_c))
+    if len(observed_q) <= T1:
+        continue
+        
         # initial guess for the parameters
         x0 = np.array([5, 1, 1, 1, 1, 1, 1, 1, 1, 1])
         x1 = np.array([5, 1, 1, 1, 1, 1, 1, 1, 1, 1])
@@ -197,18 +197,18 @@ def main(argv):
         res_c = fmin_l_bfgs_b(J_c, x2, approx_grad=True)
         print(res_c)
         outwriter.writerow([channel_name, "q", res_q[:], "a", res_a[:], "c", res_c[:]])
-
+        
         # get the final expected questions, answers and comments, and it is in the format of [[time_1,intensity_1],...,[time_n,intensity_n]]
-        J_q(res_c[0])
+        J_q(res_q[0])
         J_a(res_a[0])
         J_c(res_c[0])
         print(np.matrix(final_q))
         print(np.matrix(final_a))
         print(np.matrix(final_c))
-
-
+        
+        
         # plotting
-
+        
         month = []
         o_q = []
         e_q = []
@@ -235,78 +235,78 @@ def main(argv):
         plt.plot(month, e_c, 'g^', label = 'Expected Comments')
         plt.legend()
 
-        fig.suptitle(channel_name)
-        plt.xlabel('Month')
+fig.suptitle(channel_name)
+    plt.xlabel('Day')
         plt.ylabel('Number of Activities')
         plt.show()
         fig.savefig(channel_name + '_three_factors')
-
-
+        
+        
         '''
-        trace0 = go.Scatter(
+            trace0 = go.Scatter(
             x = month,
             y = o_q,
             name = 'Observed Questions',
             line = dict(
-                color = ('rgb(205, 12, 24)'),
-                width = 4,
-                dash='dash')
-        )
-        trace1 = go.Scatter(
+            color = ('rgb(205, 12, 24)'),
+            width = 4,
+            dash='dash')
+            )
+            trace1 = go.Scatter(
             x=month,
             y=e_q,
             name='Expected Questions',
             line=dict(
-                color=('rgb(205, 12, 24)'),
-                width=4,
-                dash = 'dot')
-        )
-        trace2 = go.Scatter(
+            color=('rgb(205, 12, 24)'),
+            width=4,
+            dash = 'dot')
+            )
+            trace2 = go.Scatter(
             x=month,
             y=o_a,
             name='Observed Answers',
             line=dict(
-                color=('rgb(22, 96, 167)'),
-                width=4,
-                dash = 'dash')
-        )
-        trace3 = go.Scatter(
+            color=('rgb(22, 96, 167)'),
+            width=4,
+            dash = 'dash')
+            )
+            trace3 = go.Scatter(
             x=month,
             y=e_a,
             name='Expected Answers',
             line=dict(
-                color=('rgb(22, 96, 167)'),
-                width=4,
-                dash='dot')
-        )
-        trace4 = go.Scatter(
+            color=('rgb(22, 96, 167)'),
+            width=4,
+            dash='dot')
+            )
+            trace4 = go.Scatter(
             x=month,
             y=o_c,
             name='Observed Comments',
             line=dict(
-                color=('rgb(50,205,50)'),
-                width=4,
-                dash = 'dash')
-        )
-        trace5 = go.Scatter(
+            color=('rgb(50,205,50)'),
+            width=4,
+            dash = 'dash')
+            )
+            trace5 = go.Scatter(
             x=month,
             y=e_c,
             name='Expected Comments',
             line=dict(
-                color=('rgb(50,205,50)'),
-                width=4,
-                dash='dot')
-        )
-        data = [trace0, trace1, trace2, trace3, trace4, trace5]
-        layout = dict(title = channel_name,
-                      xaxis = dict(title = 'Month'),
-                      yaxis = dict(title = 'Number of Activities'),
-                      )
-
-        fig = dict(data = data, layout = layout)
-        py.plot(fig, filename = channel_name + ' two factors')
-
-        '''
+            color=('rgb(50,205,50)'),
+            width=4,
+            dash='dot')
+            )
+            data = [trace0, trace1, trace2, trace3, trace4, trace5]
+            layout = dict(title = channel_name,
+            xaxis = dict(title = 'Month'),
+            yaxis = dict(title = 'Number of Activities'),
+            )
+            
+            fig = dict(data = data, layout = layout)
+            py.plot(fig, filename = channel_name + ' two factors')
+            
+            '''
 
 
 
