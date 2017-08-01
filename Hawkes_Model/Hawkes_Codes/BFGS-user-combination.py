@@ -3,7 +3,6 @@ import csv
 import numpy as    np
 from scipy.optimize import fmin_l_bfgs_b
 import matplotlib.pyplot as plt
-import math
 
 import plotly.plotly as py
 import plotly.graph_objs as go
@@ -46,66 +45,32 @@ def parseEvents(path):
                 first = False
                 tmp_list = []
                 tmp_list.append(row[0])
-                tmp_list.append([int(row[1]), 0, int(row[2])])
-                tmp_list.append([int(row[1]), 1, int(row[3])])
-                tmp_list.append([int(row[1]), 2, int(row[4])])
+                tmp_list.append([int(row[1]), 0, int(row[5])])
+                tmp_list.append([int(row[1]), 1, int(row[6])])
+                tmp_list.append([int(row[1]), 2, int(row[7])])
                 previous_channel = row[0]
             elif first == True:
                 first = False
                 tmp_list = []
                 tmp_list.append(row[0])
-                tmp_list.append([int(row[1]), 0, int(row[2])])
-                tmp_list.append([int(row[1]), 1, int(row[3])])
-                tmp_list.append([int(row[1]), 2, int(row[4])])
+                tmp_list.append([int(row[1]), 0, int(row[5])])
+                tmp_list.append([int(row[1]), 1, int(row[6])])
+                tmp_list.append([int(row[1]), 2, int(row[7])])
                 previous_channel = row[0]
             else:
                 first = False
-                tmp_list.append([int(row[1]), 0, int(row[2])])
-                tmp_list.append([int(row[1]), 1, int(row[3])])
-                tmp_list.append([int(row[1]), 2, int(row[4])])
+                tmp_list.append([int(row[1]), 0, int(row[5])])
+                tmp_list.append([int(row[1]), 1, int(row[6])])
+                tmp_list.append([int(row[1]), 2, int(row[7])])
                 previous_channel = row[0]
                 # print(np.matrix(all_channels))
 
 
 # Modified on 07/26/27: removing c1, c2, c3
 # J_q defines the equation for generating questions based on previous questions & answers & comments
-# N_q[t] = mu1 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T1
-'''
+# N_q[t] = mu1 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T1
 def J_q(x):
-    [mu1, C1, C2, C3] = x
-    expected_q = []
-    global final_q
-    final_q = []
-    length = len(observed_q)
-    # print(length)
-    dif = 0
-    for i in range(0, T1):
-        expected_q.append(observed_q[i])
-        final_q.append(observed_q[i])
-    # print(np.matrix(expected_q))
-    for i in range(T1, length):
-        tmp_sum = mu1
-        for j in range(i - T1, i):
-            # print(expected_q[j][1])
-            # print(observed_q[i][0])
-            # print(expected_q[j][0])
-            if observed_q[i][0] - observed_q[j][0] <= T1:
-                tmp_sum += C1 * observed_q[j][1] * (math.exp(observed_q[j][0] - observed_q[i][0]))
-            if observed_a[i][0] - observed_a[j][0] <= T1:
-                tmp_sum += C2 * observed_a[j][1] * (math.exp(observed_a[j][0] - observed_a[i][0]))
-            if observed_c[i][0] - observed_c[j][0] <= T1:
-                tmp_sum += C3 * observed_c[j][1] * (math.exp(observed_c[j][0] - observed_c[i][0]))
-        expected_q.append([int(observed_q[i][0]), tmp_sum])
-        final_q.append([int(observed_q[i][0]), tmp_sum])
-        dif += (observed_q[i][1] - tmp_sum) ** 2
-    # print(np.matrix(observed_q))
-    # print(np.matrix(expected_q))
-    # final_q = expected_q
-    return float(dif) / 2
-'''
-
-def J_q(x):
-    [mu1, C1, C2, C3] = x
+    [mu1, C1, theta1, C2, theta2, C3, theta3] = x
     # expected_q = []
     global final_q
     global error_q
@@ -123,11 +88,11 @@ def J_q(x):
         tmp_sum = mu1
         for j in range(i - T1, i):
             if observed_q[i][0] - observed_q[j][0] <= T1:
-                tmp_sum += C1 * observed_q[j][1] * (math.exp(observed_q[j][0] - observed_q[i][0]))
+                tmp_sum += C1 * observed_q[j][1] * ((observed_q[i][0] - observed_q[j][0]) ** (-(1 + theta1)))
             if observed_a[i][0] - observed_a[j][0] <= T1:
-                tmp_sum += C2 * observed_a[j][1] * (math.exp(observed_a[j][0] - observed_a[i][0]))
+                tmp_sum += C2 * observed_a[j][1] * ((observed_a[i][0] - observed_a[j][0]) ** (-(1 + theta2)))
             if observed_c[i][0] - observed_c[j][0] <= T1:
-                tmp_sum += C3 * observed_c[j][1] * (math.exp(observed_c[j][0] - observed_c[i][0]))
+                tmp_sum += C3 * observed_c[j][1] * ((observed_c[i][0] - observed_c[j][0]) ** (-(1 + theta3)))
         # expected_q.append([int(observed_q[i][0]),tmp_sum])
         final_q.append([int(observed_q[i][0]), tmp_sum])
         dif += (observed_q[i][1] - tmp_sum) ** 2
@@ -137,38 +102,12 @@ def J_q(x):
     avg_err_q /= float(length)
     return float(dif) / 2
 
+
 # J_a defines the equation for generating answers based on previous questions & answers & comments
-# N_a[t] = mu2 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))   tau = 1, ..., T2
-'''
+# N_a[t] = mu2 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau )^(-(1+theta3)))    tau = 1, ..., T2
 def J_a(x):
-    [mu2, C1, C2, C3] = x
-    expected_a = []
-    global final_a
-    final_a = []
-    length = len(observed_a)
-    dif = 0
-    for i in range(0, T2):
-        expected_a.append(observed_a[i])
-        final_a.append(observed_a[i])
-    for i in range(T2, length):
-        tmp_sum = mu2
-        for j in range(i - T2, i):
-            if observed_a[i][0] - observed_a[j][0] <= T2:
-                tmp_sum += C2 * observed_a[j][1] * (math.exp(observed_a[j][0] - observed_a[i][0]))
-            if observed_q[i][0] - observed_q[j][0] <= T2:
-                tmp_sum += C1 * observed_q[j][1] * (math.exp(observed_q[j][0] - observed_q[i][0]))
-            if observed_c[i][0] - observed_c[j][0] <= T2:
-                tmp_sum += C3 * observed_c[j][1] * (math.exp(observed_c[j][0] - observed_c[i][0]))
-        expected_a.append([int(observed_a[i][0]), tmp_sum])
-        final_a.append([int(observed_a[i][0]), tmp_sum])
-        dif += (observed_a[i][1] - tmp_sum) ** 2
-
-    return float(dif) / 2
-'''
-
-def J_a(x):
-    [mu2, C1, C2, C3] = x
-    #expected_a = []
+    [mu2, C1, theta1, C2, theta2, C3, theta3] = x
+    # expected_a = []
     global final_a
     global error_a
     global avg_err_a
@@ -178,59 +117,33 @@ def J_a(x):
     length = len(observed_a)
     dif = 0
     for i in range(0, T2):
-        #expected_a.append(observed_a[i])
+        # expected_a.append(observed_a[i])
         final_a.append(observed_a[i])
         error_a.append(0)
     for i in range(T2, length):
         tmp_sum = mu2
         for j in range(i - T2, i):
             if observed_q[i][0] - observed_q[j][0] <= T2:
-                tmp_sum += C1 * observed_q[j][1] * (math.exp(observed_q[j][0] - observed_q[i][0]))
+                tmp_sum += C1 * observed_q[j][1] * ((observed_q[i][0] - observed_q[j][0]) ** (-(1 + theta1)))
             if observed_a[i][0] - observed_a[j][0] <= T2:
-                tmp_sum += C2 * observed_a[j][1] * (math.exp(observed_a[j][0] - observed_a[i][0]))
+                tmp_sum += C2 * observed_a[j][1] * ((observed_a[i][0] - observed_a[j][0]) ** (-(1 + theta2)))
             if observed_c[i][0] - observed_c[j][0] <= T2:
-                tmp_sum += C3 * observed_c[j][1] * (math.exp(observed_c[j][0] - observed_c[i][0]))
-        #expected_a.append([int(observed_a[i][0]),tmp_sum])
-        final_a.append([int(observed_a[i][0]),tmp_sum])
+                tmp_sum += C3 * observed_c[j][1] * ((observed_c[i][0] - observed_c[j][0]) ** (-(1 + theta3)))
+        # expected_a.append([int(observed_a[i][0]),tmp_sum])
+        final_a.append([int(observed_a[i][0]), tmp_sum])
         dif += (observed_a[i][1] - tmp_sum) ** 2
         tmp_err = 100 * abs(observed_a[i][1] - tmp_sum) / float(observed_a[i][1])
         error_a.append(tmp_err)
         avg_err_a += tmp_err
 
     avg_err_a /= float(length)
-    return float(dif)/2
+    return float(dif) / 2
+
 
 # J_c defines the equation for generating comments based on previous questions & answers & comments
-# N_c[t] = mu3 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T3
-'''
+# N_c[t] = mu3 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T3
 def J_c(x):
-    [mu3, C1, C2, C3] = x
-    expected_c = []
-    global final_c
-    final_c = []
-    length = len(observed_c)
-    dif = 0
-    for i in range(0, T3):
-        expected_c.append(observed_c[i])
-        final_c.append(observed_c[i])
-    for i in range(T3, length):
-        tmp_sum = mu3
-        for j in range(i - T3, i):
-            if observed_c[i][0] - observed_c[j][0] <= T3:
-                tmp_sum += C3 * observed_c[j][1] * (math.exp(observed_c[j][0] - observed_c[i][0]))
-            if observed_a[i][0] - observed_a[j][0] <= T3:
-                tmp_sum += C2 * observed_a[j][1] * (math.exp(observed_a[j][0] - observed_a[i][0]))
-            if observed_q[i][0] - observed_q[j][0] <= T3:
-                tmp_sum += C1 * observed_q[j][1] * (math.exp(observed_q[j][0] - observed_q[i][0]))
-        expected_c.append([int(observed_c[i][0]), tmp_sum])
-        final_c.append([int(observed_c[i][0]), tmp_sum])
-        dif += (observed_c[i][1] - tmp_sum) ** 2
-    # final_c = expected_c
-    return float(dif) / 2
-'''
-
-def J_c(x):
-    [mu3, C1, C2, C3] = x
+    [mu3, C1, theta1, C2, theta2, C3, theta3] = x
     # expected_c = []
     global final_c
     global error_c
@@ -248,11 +161,11 @@ def J_c(x):
         tmp_sum = mu3
         for j in range(i - T3, i):
             if observed_q[i][0] - observed_q[j][0] <= T3:
-                tmp_sum += C1 * observed_q[j][1] * (math.exp(observed_q[j][0] - observed_q[i][0]))
+                tmp_sum += C1 * observed_q[j][1] * ((observed_q[i][0] - observed_q[j][0]) ** (-(1 + theta1)))
             if observed_a[i][0] - observed_a[j][0] <= T3:
-                tmp_sum += C2 * observed_a[j][1] * (math.exp(observed_a[j][0] - observed_a[i][0]))
+                tmp_sum += C2 * observed_a[j][1] * ((observed_a[i][0] - observed_a[j][0]) ** (-(1 + theta2)))
             if observed_c[i][0] - observed_c[j][0] <= T3:
-                tmp_sum += C3 * observed_c[j][1] * (math.exp(observed_c[j][0] - observed_c[i][0]))
+                tmp_sum += C3 * observed_c[j][1] * ((observed_c[i][0] - observed_c[j][0]) ** (-(1 + theta3)))
         # expected_c.append([int(observed_c[i][0]),tmp_sum])
         final_c.append([int(observed_c[i][0]), tmp_sum])
         dif += (observed_c[i][1] - tmp_sum) ** 2
@@ -262,6 +175,7 @@ def J_c(x):
 
     avg_err_c /= float(length)
     return float(dif) / 2
+
 
 def J_combine(x):
     [mu2, C2, c2, theta2, C1, c1, theta1, C3, c3, theta3] = x
@@ -308,18 +222,15 @@ def main(argv):
     except:
         print("Fail to open outputfile")
     outwriter = csv.writer(out, delimiter=',')
-
     outwriter.writerow(
-        ["channel_name", "par_q", "avg_err_q", "par_a", "avg_err_a", "par_c", "avg_err_c"])
+        ["channel_name", "par_asker", "avg_err_asker", "par_answerer", "avg_err_answerer", "par_commenter",
+         "avg_err_commenter"])
 
     # py.plotly.tools.set_credentials_file(username='alicehz', api_key='r0ohfB3ZfTwaIt7l7TvW')
     # py.plotly.tools.set_credentials_file(username='shizuku775', api_key='EG7TELLZedHPVd3vqcYT')
 
     cnt = 0
     for channel in all_channels:
-        cnt += 1
-        if cnt <= 89:
-            continue
         channel_name = channel[0]
         observed_q[:] = []
         observed_a[:] = []
@@ -340,9 +251,9 @@ def main(argv):
         # print(np.matrix(observed_c))
         if len(observed_q) <= T1:
             continue
-        x0 = np.array([5, 1, 1, 1])
-        x1 = np.array([5, 1, 1, 1])
-        x2 = np.array([5, 1, 1, 1])
+        x0 = np.array([5, 1, 1, 1, 1, 1, 1])
+        x1 = np.array([5, 1, 1, 1, 1, 1, 1])
+        x2 = np.array([5, 1, 1, 1, 1, 1, 1])
 
         res_q = fmin_l_bfgs_b(J_q, x0, approx_grad=True)
         print(res_q)
@@ -351,22 +262,14 @@ def main(argv):
         res_c = fmin_l_bfgs_b(J_c, x2, approx_grad=True)
         print(res_c)
 
-        '''
-        dif_q = J_q(res_q[0])
-        dif_a = J_a(res_a[0])
-        dif_c = J_c(res_c[0])
+        J_q(res_q[0])
+        J_a(res_a[0])
+        J_c(res_c[0])
         # print(np.matrix(final_q))
         # print(np.matrix(final_a))
         # print(np.matrix(final_c))
 
-        outwriter.writerow(
-            [channel_name, "q", res_q[:], "dif_q", dif_q, "a", res_a[:], "dif_a", dif_a, "c", res_c[:], "dif_c", dif_c])
 
-        '''
-
-        J_q(res_q[0])
-        J_a(res_a[0])
-        J_c(res_c[0])
         outwriter.writerow(
             [channel_name, res_q[0], avg_err_q, res_a[0], avg_err_a, res_c[0], avg_err_c])
 
@@ -379,7 +282,7 @@ def main(argv):
         o_c = []
         e_c = []
         length = len(observed_q)
-        for k in range(0, length):
+        for k in range(0,length):
             month.append(observed_q[k][0])
             o_q.append(observed_q[k][1])
             e_q.append(final_q[k][1])
@@ -390,21 +293,23 @@ def main(argv):
 
 
         fig = plt.figure()
-        plt.plot(month, o_q, 'r--', label='Observed Questions')
-        plt.plot(month, e_q, 'r^', label='Expected Questions')
-        plt.plot(month, o_a, 'b--', label='Observed Answers')
-        plt.plot(month, e_a, 'b^', label='Expected Answers')
-        plt.plot(month, o_c, 'g--', label='Observed Comments')
-        plt.plot(month, e_c, 'g^', label='Expected Comments')
+        plt.plot(month, o_q, 'r--', label = 'Observed Questions')
+        plt.plot(month, e_q, 'r^', label = 'Expected Questions')
+        plt.plot(month, o_a, 'b--', label = 'Observed Answers')
+        plt.plot(month, e_a, 'b^',label = 'Expected Answers')
+        plt.plot(month, o_c, 'g--',label = 'Observed Comments')
+        plt.plot(month, e_c, 'g^', label = 'Expected Comments')
         plt.legend()
 
         fig.suptitle(channel_name)
         plt.xlabel('Day')
         plt.ylabel('Number of Activities')
-        # plt.show()
-        fig.savefig(channel_name + '_daily_exp')
-        
+        #plt.show()
+        fig.savefig(channel_name + '_daily_ver3')
 
+        '''
+
+        '''
         trace0 = go.Scatter(
             x = month,
             y = o_q,
@@ -468,7 +373,7 @@ def main(argv):
                       )
 
         fig = dict(data = data, layout = layout)
-        py.plot(fig, filename = channel_name + '_daily_exp')
+        py.plot(fig, filename = channel_name + '_daily_tmp2')
 
         data = [trace0, trace1]
         layout = dict(title=channel_name + ' Q',
@@ -476,7 +381,7 @@ def main(argv):
                       yaxis=dict(title='Number of Questions'),
                       )
         fig = dict(data=data, layout=layout)
-        py.plot(fig, filename=channel_name + '_daily_Q_exp')
+        py.plot(fig, filename=channel_name + '_daily_Q_ver3')
 
         data = [trace2, trace3]
         layout = dict(title=channel_name + ' A',
@@ -484,7 +389,7 @@ def main(argv):
                       yaxis=dict(title='Number of Answers'),
                       )
         fig = dict(data=data, layout=layout)
-        py.plot(fig, filename=channel_name + '_daily_A_exp')
+        py.plot(fig, filename=channel_name + '_daily_A_ver3')
 
         data = [trace4, trace5]
         layout = dict(title=channel_name + ' C',
@@ -492,8 +397,9 @@ def main(argv):
                       yaxis=dict(title='Number of Commments'),
                       )
         fig = dict(data=data, layout=layout)
-        py.plot(fig, filename=channel_name + '_daily_C_exp')
+        py.plot(fig, filename=channel_name + '_daily_C_ver3')
         '''
+
         '''
         month = []
         length = len(observed_q)
@@ -537,8 +443,9 @@ def main(argv):
                       )
 
         fig = dict(data=data, layout=layout)
-        py.plot(fig, filename=channel_name + '_daily_error_exp')
+        py.plot(fig, filename=channel_name + '_daily_error_fewer')
         '''
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

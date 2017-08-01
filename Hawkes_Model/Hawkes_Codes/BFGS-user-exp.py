@@ -46,23 +46,23 @@ def parseEvents(path):
                 first = False
                 tmp_list = []
                 tmp_list.append(row[0])
-                tmp_list.append([int(row[1]), 0, int(row[2])])
-                tmp_list.append([int(row[1]), 1, int(row[3])])
-                tmp_list.append([int(row[1]), 2, int(row[4])])
+                tmp_list.append([int(row[1]), 0, int(row[5])])
+                tmp_list.append([int(row[1]), 1, int(row[6])])
+                tmp_list.append([int(row[1]), 2, int(row[7])])
                 previous_channel = row[0]
             elif first == True:
                 first = False
                 tmp_list = []
                 tmp_list.append(row[0])
-                tmp_list.append([int(row[1]), 0, int(row[2])])
-                tmp_list.append([int(row[1]), 1, int(row[3])])
-                tmp_list.append([int(row[1]), 2, int(row[4])])
+                tmp_list.append([int(row[1]), 0, int(row[5])])
+                tmp_list.append([int(row[1]), 1, int(row[6])])
+                tmp_list.append([int(row[1]), 2, int(row[7])])
                 previous_channel = row[0]
             else:
                 first = False
-                tmp_list.append([int(row[1]), 0, int(row[2])])
-                tmp_list.append([int(row[1]), 1, int(row[3])])
-                tmp_list.append([int(row[1]), 2, int(row[4])])
+                tmp_list.append([int(row[1]), 0, int(row[5])])
+                tmp_list.append([int(row[1]), 1, int(row[6])])
+                tmp_list.append([int(row[1]), 2, int(row[7])])
                 previous_channel = row[0]
                 # print(np.matrix(all_channels))
 
@@ -104,6 +104,7 @@ def J_q(x):
     return float(dif) / 2
 '''
 
+
 def J_q(x):
     [mu1, C1, C2, C3] = x
     # expected_q = []
@@ -137,6 +138,7 @@ def J_q(x):
     avg_err_q /= float(length)
     return float(dif) / 2
 
+
 # J_a defines the equation for generating answers based on previous questions & answers & comments
 # N_a[t] = mu2 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))   tau = 1, ..., T2
 '''
@@ -166,9 +168,10 @@ def J_a(x):
     return float(dif) / 2
 '''
 
+
 def J_a(x):
     [mu2, C1, C2, C3] = x
-    #expected_a = []
+    # expected_a = []
     global final_a
     global error_a
     global avg_err_a
@@ -178,7 +181,7 @@ def J_a(x):
     length = len(observed_a)
     dif = 0
     for i in range(0, T2):
-        #expected_a.append(observed_a[i])
+        # expected_a.append(observed_a[i])
         final_a.append(observed_a[i])
         error_a.append(0)
     for i in range(T2, length):
@@ -190,15 +193,16 @@ def J_a(x):
                 tmp_sum += C2 * observed_a[j][1] * (math.exp(observed_a[j][0] - observed_a[i][0]))
             if observed_c[i][0] - observed_c[j][0] <= T2:
                 tmp_sum += C3 * observed_c[j][1] * (math.exp(observed_c[j][0] - observed_c[i][0]))
-        #expected_a.append([int(observed_a[i][0]),tmp_sum])
-        final_a.append([int(observed_a[i][0]),tmp_sum])
+        # expected_a.append([int(observed_a[i][0]),tmp_sum])
+        final_a.append([int(observed_a[i][0]), tmp_sum])
         dif += (observed_a[i][1] - tmp_sum) ** 2
         tmp_err = 100 * abs(observed_a[i][1] - tmp_sum) / float(observed_a[i][1])
         error_a.append(tmp_err)
         avg_err_a += tmp_err
 
     avg_err_a /= float(length)
-    return float(dif)/2
+    return float(dif) / 2
+
 
 # J_c defines the equation for generating comments based on previous questions & answers & comments
 # N_c[t] = mu3 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T3
@@ -228,6 +232,7 @@ def J_c(x):
     # final_c = expected_c
     return float(dif) / 2
 '''
+
 
 def J_c(x):
     [mu3, C1, C2, C3] = x
@@ -262,6 +267,7 @@ def J_c(x):
 
     avg_err_c /= float(length)
     return float(dif) / 2
+
 
 def J_combine(x):
     [mu2, C2, c2, theta2, C1, c1, theta1, C3, c3, theta3] = x
@@ -310,16 +316,14 @@ def main(argv):
     outwriter = csv.writer(out, delimiter=',')
 
     outwriter.writerow(
-        ["channel_name", "par_q", "avg_err_q", "par_a", "avg_err_a", "par_c", "avg_err_c"])
+        ["channel_name", "par_asker", "avg_err_asker", "par_answerer", "avg_err_answerer", "par_commenter",
+         "avg_err_commenter"])
 
     # py.plotly.tools.set_credentials_file(username='alicehz', api_key='r0ohfB3ZfTwaIt7l7TvW')
     # py.plotly.tools.set_credentials_file(username='shizuku775', api_key='EG7TELLZedHPVd3vqcYT')
 
     cnt = 0
     for channel in all_channels:
-        cnt += 1
-        if cnt <= 89:
-            continue
         channel_name = channel[0]
         observed_q[:] = []
         observed_a[:] = []
@@ -403,7 +407,7 @@ def main(argv):
         plt.ylabel('Number of Activities')
         # plt.show()
         fig.savefig(channel_name + '_daily_exp')
-        
+
 
         trace0 = go.Scatter(
             x = month,
@@ -539,6 +543,7 @@ def main(argv):
         fig = dict(data=data, layout=layout)
         py.plot(fig, filename=channel_name + '_daily_error_exp')
         '''
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

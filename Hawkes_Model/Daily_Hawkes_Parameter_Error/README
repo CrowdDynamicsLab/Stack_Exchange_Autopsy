@@ -1,0 +1,57 @@
+Created by Jiahui @ 08/01/17
+
+1. 'kernel_allpars.csv' contains the hawkes parameters and average prediction error associated with Question & Answer & Comment.
+	For Question: the parameter list is [mu1, C1, c1, theta1, C2, c2, theta2, C3, c3, theta3];
+					N_q[t] = mu1 + C1 * sum(N_q[t-tau](tau + c1)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau + c2)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau + c3)^(-(1+theta3)))    tau = 1, ..., T1
+	For Answer: the parameter list is [mu2, C1, c1, theta1, C2, c2, theta2, C3, c3, theta3];
+					N_a[t] = mu2 + C1 * sum(N_q[t-tau](tau + c1)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau + c2)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau + c3)^(-(1+theta3)))    tau = 1, ..., T2
+	For Comment: the parameter list is [mu3, C1, c1, theta1, C2, c2, theta2, C3, c3, theta3];
+					N_c[t] = mu3 + C1 * sum(N_q[t-tau](tau + c1)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau + c2)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau + c3)^(-(1+theta3)))    tau = 1, ..., T3
+	Average Prediction Error is avg(abs(predicted-observed)/observed) * 100
+
+2. 'kernel_lesspars.csv' contains the hawkes parameters and average predication error associated with Question & Answer & Comment.
+	For Question: the parameter list is [mu1, C1, theta1, C2,  theta2, C3, theta3];
+					N_q[t] = mu1 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T1
+	For Answer: the parameter list is [mu2, C1, theta1, C2,  theta2, C3, theta3];
+					N_a[t] = mu2 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T2
+	For Comment: the parameter list is [mu3, C1, theta1, C2,  theta2, C3, theta3];
+					N_c[t] = mu3 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T3
+	Average Prediction Error is avg(abs(predicted-observed)/observed) * 100
+
+3. 'kernel_exp.csv' contains the hawkes parameters and average predication error associated with Question & Answer & Comment.
+	For Question: the parameter list is [mu1, C1,  C2,  C3];
+					N_q[t] = mu1 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T1
+	For Answer: the parameter list is [mu2, C1,  C2,  C3];
+					N_a[t] = mu2 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T2
+	For Comment: the parameter list is [mu3, C1, C2, C3];
+					the parameter list is [mu1, C1,  C2,  C3];
+					N_c[t] = mu3 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T3
+	Average Prediction Error is avg(abs(predicted-observed)/observed) * 100
+
+4. 'user_allpars.csv' contains the hawkes parameters and average prediction error associated with Asker & Answerer & Commenter.
+	For Asker: the parameter list is [mu1, C1, c1, theta1, C2, c2, theta2, C3, c3, theta3];
+					N_q[t] = mu1 + C1 * sum(N_q[t-tau](tau + c1)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau + c2)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau + c3)^(-(1+theta3)))    tau = 1, ..., T1
+	For Answerer: the parameter list is [mu2, C1, c1, theta1, C2, c2, theta2, C3, c3, theta3];
+					N_a[t] = mu2 + C1 * sum(N_q[t-tau](tau + c1)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau + c2)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau + c3)^(-(1+theta3)))    tau = 1, ..., T2
+	For Commenter: the parameter list is [mu3, C1, c1, theta1, C2, c2, theta2, C3, c3, theta3];
+					N_c[t] = mu3 + C1 * sum(N_q[t-tau](tau + c1)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau + c2)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau + c3)^(-(1+theta3)))    tau = 1, ..., T3
+	Average Prediction Error is avg(abs(predicted-observed)/observed) * 100
+
+5. 'user_lesspars.csv' contains the hawkes parameters and average predication error associated with Asker & Answerer & Commenter.
+	For Asker: the parameter list is [mu1, C1, theta1, C2,  theta2, C3, theta3];
+					N_q[t] = mu1 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T1
+	For Answerer: the parameter list is [mu2, C1, theta1, C2,  theta2, C3, theta3];
+					N_a[t] = mu2 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T2
+	For Commenter: the parameter list is [mu3, C1, theta1, C2,  theta2, C3, theta3];
+					N_c[t] = mu3 + C1 * sum(N_q[t-tau](tau)^(-(1+theta1)))  + C2 * sum(N_a[t-tau](tau)^(-(1+theta2))) + C3 * sum(N_c[t-tau](tau)^(-(1+theta3)))    tau = 1, ..., T3
+	Average Prediction Error is avg(abs(predicted-observed)/observed) * 100
+
+6. 'user_exp.csv' contains the hawkes parameters and average predication error associated with Asker & Answerer & Commenter.
+	For Asker: the parameter list is [mu1, C1,  C2,  C3];
+					N_q[t] = mu1 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T1
+	For Answerer: the parameter list is [mu2, C1,  C2,  C3];
+					N_a[t] = mu2 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T2
+	For Commenter: the parameter list is [mu3, C1, C2, C3];
+					the parameter list is [mu1, C1,  C2,  C3];
+					N_c[t] = mu3 + C1 * sum(N_q[t-tau] * e ^ (-tau))  + C2 * sum(N_a[t-tau]* e ^ (-tau)) + C3 * sum(N_c[t-tau]* e ^ (-tau)))    tau = 1, ..., T3
+	Average Prediction Error is avg(abs(predicted-observed)/observed) * 100
