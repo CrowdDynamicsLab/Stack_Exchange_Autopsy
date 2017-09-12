@@ -1,0 +1,18 @@
+Created By Jiahui @ 09/12/17
+
+BFGS-exp.py: Measuring the relationship among Question & Answer & Comment using Hawkes Model; each activity is influenced by the history of all activities; the model leverages BFGS algorithm with exponential function as kernel function.
+
+BFGS-twoFactors.py: Measuring the relationship among Question & Answer & Comment using Hawkes Model; each activity is influenced by the history of two activities (**); the model leverages BFGS algorithm with power law function as kernel function.
+
+BFGS-threeFactors.py: Measuring the relationship among Question & Answer & Comment using Hawkes Model; each activity is influenced by the history of all activities; the model leverages BFGS algorithm with power law function as kernel function.
+
+BFGS-combination.py: Similar to BFGS-threeFactors.py, except that it uses fewer parameters in the kernel function.
+
+BFGS-user-exp.py: Measuring the relationship among Asker & Answerer & Commenter using Hawkes Model; each activity is influenced by the history of all activities; the model leverages BFGS algorithm with exponential function as kernel function.
+
+BFGS-user-threeFactors.py: Measuring the relationship among Asker & Answerer & Commenter using Hawkes Model; each activity is influenced by the history of all activities; the model leverages BFGS algorithm with power law function as kernel function.
+
+BFGS-user-combination.py: Similar to BFGS-user-threeFactors.py, except that it uses fewer parameters in the kernel function.
+
+
+** Question is influenced by previous questions & answers; Answer is influenced by previous questions & answers; Comment is influenced by previous answers & comments
