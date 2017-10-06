@@ -1,5 +1,10 @@
 # Modeling the Dynamics of User Content Generation: A Case Study of Stack Exchange Websites
+Here's a few alternative titles for the paper:
+- **Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
+- **The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
+- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**
 
+Here's the outline of the paper:
 1. **Introduction**
 2. **Related Work**
 3. **Modeling User Content Generation**
@@ -22,8 +27,3 @@
    1. **Analysis of the Best Fit Model:** present theoretical analysis of the best fit model and the implications.
    2. **Implications and Future Directions:** the implications (new applications) of our research and potential research questions. 
 6. **Conclusion**
-
-Here's a few alternative titles:
-- **Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
-- **The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
-- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**
