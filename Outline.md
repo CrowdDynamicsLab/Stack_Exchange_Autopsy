@@ -10,15 +10,15 @@ Here's the outline of the paper:
 1. **Introduction**
 2. **Related Work**
 3. **Modeling User Content Generation**
-   1. **Desiderata:** [This subsection is optional] The desired properties of our content generation model, e.g., macroscopic, explanatory power, predictive power, parsimony/minimalism, comprehensive.
-   2. **Problem Formulation:** [This subsection is optional] Formulating the model-- instead of directly modeling content generation as a dynamic process (functions of time), we are modeling it in terms of associated factors, which themselves are dynamic.
+   1. **Desiderata:** The desired properties of our content generation model, e.g., macroscopic, explanatory power, predictive power, parsimony/minimalism, comprehensive. [*Note:* This subsection is optional. The desired properties of model can be reported in Introduction.]
+   2. **Problem Formulation:** Formulating the model-- instead of directly modeling content generation as a dynamic process (functions of time), we are modeling it in terms of associated factors, which themselves are dynamic.  [*Note:* This subsection is optional. The problem formulation can be reported in Introduction.]
    3. **Factors of Content Generation:** Recognizing the key factors that drive content generation in CQA platforms. In particular, we recognize two factors of content generation for different types of contents in Stack Exchange websites. 
        1. **User Participation:** The number of users who participate in generating conent.
        2. **Content Dependency:**  The dependency of a type of content (e.g., answers) on other type of content(s) (e.g., questions).
    4. **Basis Functions:** Present alternative basis functions to capture the effect of a single factor on content generation. 
    5. **Interaction among the Factors:** Potential interaction among the factors and resultant relationships. 
    6. **Proposed Model:** A model (based on generalized/power mean) that can represent different possible relationships among the factors. We present special cases of our model, and establish connection between these cases and classical concepts such as the law of the minimum, economic production, etc.
-4. **Empirical Analysis / Empirical Study**
+4. **Empirical Analysis / Empirical Study I** [*Note:* This is the first of two empirical analysis sections.]
    1. **Dataset Description:** Number of websites, time period and other relevant description.
    2. **Bayesian Parameter Estimation:** The parameters of our model, and how we use the Bayesian framework to estimate those.
    3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites (with diagrams).
