@@ -25,6 +25,8 @@ Implications and Future Directions: the implications (new applications) of our r
   - **Methodological Limitations:** the assumptions of our model and other limitations.
 - **Conclusion**
 
-Here's a few alternative titles
-***Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites***
-***The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites***
+Here's a few alternative titles:
+
+**Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
+
+**The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
