@@ -18,17 +18,19 @@ Here's the outline of the paper:
    4. **Basis Functions:** Present alternative basis functions to capture the effect of a single factor on content generation. 
    5. **Interaction among the Factors:** Potential interaction among the factors and resultant relationships. 
    6. **Proposed Model:** A model (based on generalized/power mean) that can represent different possible relationships among the factors. We present special cases of our model, and establish connection between these cases and classical concepts such as the law of the minimum, economic production, etc.
-4. **Empirical Analysis / Empirical Study I** [*Note:* This is the first of two empirical analysis sections.]
+4. **Empirical Analysis I (Model)** [*Note:* This is the first of the two empirical analysis sections.]
    1. **Dataset Description:** Number of websites, time period and other relevant description.
    2. **Bayesian Parameter Estimation:** The parameters of our model, and how we use the Bayesian framework to estimate those.
    3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites (with diagrams).
    4. **Model Interpretation:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation (to be found based on fitting) and diminishing return (co-limitation).   
    5. **The Underlying Market Production:** How content generation in Stack Exchange websites reflect market production.
    6. **Case Study:** [*Note:* This subsection is optional. The purpose of this subsection is to present surprising cases (if any).] The curious case of websites deviating from the diminishing return.
-   7. **Uncovering Two Key Distributions:** Content generation in the light of two key distributions, user activity and subject POV (perspective). We attempt to establish the hypothesis that individuals are coming with lower resources.
-   8. **Forecasting Content Generation:** the effectiveness of our model in prediction task.
-   9. **Model Sensitivity / Sensitivity to Time Granularity:** the effectiveness study of our model under different time granularity, e.g., day, week, month, quarter.
-5. **Discussion**
+   7. **Uncovering Two Key Distributions:** Content generation in the light of two key distributions, user activity and subject POV (perspective). We attempt to establish the hypothesis that as number of users increase, individuals join with lower resources.
+   8. **Forecasting Content Generation:** The effectiveness of our model in content prediction task.
+   9. **Sensitivity Analysis / Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter.
+5. **Empirical Analysis II (Applications)** 
+  1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale-- the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves. 
+6. **Discussion**
    1. **Analysis of the Best Fit Model:** present theoretical analysis of the best fit model and the implications.
    2. **Implications and Future Directions:** the implications (new applications) of our research and potential research questions. 
-6. **Conclusion**
+7. **Conclusion**
