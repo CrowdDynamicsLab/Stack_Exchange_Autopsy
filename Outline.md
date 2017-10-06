@@ -10,8 +10,8 @@ Here's the outline of the paper:
 1. **Introduction**
 2. **Related Work**
 3. **Modeling User Content Generation**
-   1. **Desiderata:** [This subsection is optional.] The desired properties of our content generation model, e.g., macroscopic, explanatory power, predictive power, parsimony/minimalism, comprehensive.
-   2. **Problem Formulation:** [This subsection is optional.] Formulating the model-- instead of directly modeling content generation as a dynamic process (functions of time), we are modeling it in terms of associated factors, which themselves are dynamic.
+   1. **Desiderata:** [This subsection is optional] The desired properties of our content generation model, e.g., macroscopic, explanatory power, predictive power, parsimony/minimalism, comprehensive.
+   2. **Problem Formulation:** [This subsection is optional] Formulating the model-- instead of directly modeling content generation as a dynamic process (functions of time), we are modeling it in terms of associated factors, which themselves are dynamic.
    3. **Factors of Content Generation:** Recognizing the key factors that drive content generation in CQA platforms. In particular, we recognize two factors of content generation for different types of contents in Stack Exchange websites. 
        1. **User Participation:** The number of users who participate in generating conent.
        2. **Content Dependency:**  The dependency of a type of content (e.g., answers) on other type of content(s) (e.g., questions).
