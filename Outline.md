@@ -19,9 +19,9 @@ Here's the outline of the paper:
    5. **Interaction among the Factors:** Potential interaction among the factors and resultant relationships. 
    6. **Proposed Model:** A model (based on generalized/power mean) that can represent different possible relationships among the factors. We present special cases of our model, and establish connection between these cases and classical concepts such as the law of the minimum, economic production, etc.
 4. **Empirical Analysis / Empirical Study**
-   1. **Dataset Description:** number of websites, time period and other relevant description.
-   2. **Bayesian Parameter Estimation:** model parameters and how we use the Bayesian framework to estimate those.
-   3. **Model Fitting Results / Parameter Analysis:** best fit parameter values (distribution)  for different Stack Exchange websites (with diagrams).
+   1. **Dataset Description:** Number of websites, time period and other relevant description.
+   2. **Bayesian Parameter Estimation:** The parameters of our model, and how we use the Bayesian framework to estimate those.
+   3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites (with diagrams).
    4. **Model Interpretation/ Explaining Content Generation:** explaining content generation in Stack Exchange websites in the    5. **Explaining Content Generation using Market Production / The Underlying Market Production:** how content generation in Stack Exchange websites reflect market production.
    6. **Case Study:** the curious case of websites deviating from the diminishing return.
    7. **Uncovering Population and Content Dynamics / Relating Population and Content Dynamics to Content Generation:** content generation in the light of population (activity distribution and evolution) and content (perspective distribution and evolution) dynamics. We attempt to establish the hypothesis that individuals are coming with lower resources.
