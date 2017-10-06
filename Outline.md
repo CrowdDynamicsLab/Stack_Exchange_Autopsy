@@ -13,7 +13,7 @@ Here's the outline of the paper:
 2. **Related Work**
 3. **Modeling User Content Generation**
    1. **Desiderata:** The desired properties of our content generation model, e.g., macroscopic, explanatory power, predictive power, parsimony/minimalism, comprehensive. [*Note:* This subsection is optional. The desired properties of model can be reported in Introduction.]
-   2. **Problem Formulation:** Formulating the model-- instead of directly modeling content generation as a dynamic process (functions of time), we are modeling it in terms of associated factors, which themselves are dynamic.  [*Note:* This subsection is optional. The problem formulation can be reported in Introduction.]
+   2. **Problem Formulation:** Formulating the model— instead of directly modeling content generation as a dynamic process (functions of time), we are modeling it in terms of associated factors, which themselves are dynamic.  [*Note:* This subsection is optional. The problem formulation can be reported in Introduction.]
    3. **Factors of Content Generation:** Recognizing the key factors that drive content generation in CQA platforms. In particular, we recognize two factors of content generation for different types of contents in Stack Exchange websites. 
        1. **User Participation:** The number of users who participate in generating conent.
        2. **Content Dependency:**  The dependency of a type of content (e.g., answers) on other type of content(s) (e.g., questions).
@@ -32,7 +32,7 @@ Here's the outline of the paper:
    9. **Sensitivity Analysis / Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)--   
    10. **Why Economic Model Works? / Stability of Core:** Showing the presence of a stable core that maintains the economic model. --Plots to show the age and size of core--
 5. **Empirical Analysis II (Applications)** 
-   1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale-- the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness. --Figure: Plot to show answer to question ratio fit for different number of users--  
+   1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale— the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness. --Figure: Plot to show answer to question ratio fit for different number of users--  
    2. **Health of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we investigate the adverse effect of scale on a set of health metrics. --Figure: Plot to show correlation between answer to question ratio and health metrics-- 
    3. **Stability of CQA Platforms:** The stability of CQA platforms depend on user activity distribution. We investigate the stability of different Stack Exchange websites. --Figure: Plot to show stability as a function of economic parameters/size/etc.--
    4. **Controllability of CQA Platforms:** The controllability of CQA platforms also depend on user activity distribution. We investigate the controllability of different Stack Exchange websites. --Figure: Plot to show controllability as a function of economic parameters/size/etc.--
