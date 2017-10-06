@@ -15,9 +15,9 @@ Here's the outline of the paper:
    3. **Factors of Content Generation:** Recognizing the key factors that drive content generation in CQA platforms. In particular, we recognize two factors of content generation for different types of contents in Stack Exchange websites. 
        1. **User Participation:** The number of users who participate in generating conent.
        2. **Content Dependency:**  The dependency of a type of content (e.g., answers) on other type of content(s) (e.g., questions).
-   4. **Growth Functions:** alternative growth functions to capture the effect of a single factor on content generation. 
-   5. **Interaction among the Factors:** potential interaction among the factors and resultant relationships. 
-   6. **Proposed Model:** a model that can capture different types of  interactions among the factors. We present special cases of our model, and establish connection between these cases and classical concepts such as the law of the minimum, economic production, etc.
+   4. **Basis Functions:** Present alternative basis functions to capture the effect of a single factor on content generation. 
+   5. **Interaction among the Factors:** Potential interaction among the factors and resultant relationships. 
+   6. **Proposed Model:** A model (based on generalized/power mean) that can represent different possible relationships among the factors. We present special cases of our model, and establish connection between these cases and classical concepts such as the law of the minimum, economic production, etc.
 4. **Empirical Analysis / Empirical Study**
    1. **Dataset Description:** number of websites, time period and other relevant description.
    2. **Bayesian Parameter Estimation:** model parameters and how we use the Bayesian framework to estimate those.
