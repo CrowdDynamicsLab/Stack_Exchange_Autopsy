@@ -30,11 +30,13 @@ Here's the outline of the paper:
    7. **Uncovering Two Key Distributions:** Content generation in the light of two key distributions, user activity and subject POV (perspective). We attempt to establish the hypothesis that as number of users increase, individuals with fewer resources join network. --Figure: Plot to show user activity and subject POV distributions--
    8. **Forecasting Content Generation:** The effectiveness of our model in content prediction task. --Figure: Plot to show prediction accuracy (line chart)--   
    9. **Sensitivity Analysis / Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)--   
+   10. **Why Economic Model Works? / Stability of Core:** Showing the presence of a stable core that maintains the economic model. --Plots to show the age and size of core--
 5. **Empirical Analysis II (Applications)** 
    1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale-- the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness. --Figure: Plot to show answer to question ratio fit for different number of users--  
    2. **Health of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we investigate the adverse effect of scale on a set of health metrics. --Figure: Plot to show correlation between answer to question ratio and health metrics-- 
-   3. **Stability of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we investigate the adverse effect of scale on a set of health metrics. --Figure: Plot to show correlation between answer to question ratio and health metrics--
+   3. **Stability of CQA Platforms:** The stability of CQA platforms depend on user activity distribution. We investigate the stability of different Stack Exchange websites. --Figure: Plot to show stability as a function of economic parameters/size/etc.--
+   4. **Controllability of CQA Platforms:** The controllability of CQA platforms also depend on user activity distribution. We investigate the controllability of different Stack Exchange websites. --Figure: Plot to show controllability as a function of economic parameters/size/etc.--
 6. **Discussion**  [*Note:* This section is optional. The implications of our research can be reported in Conclusion.]
    1. **Analysis of the Best Fit Model:** Presenting analytical results for the Cobb-Douglas model.
-   2. **Implications:** the implications of our research and potential research questions.
+   2. **Implications:** The implications of our research and new research questions.
 7. **Conclusion**
