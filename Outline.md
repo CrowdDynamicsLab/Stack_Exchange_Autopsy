@@ -21,16 +21,16 @@ Here's the outline of the paper:
 4. **Empirical Analysis I (Model)** [*Note:* This is the first of the two empirical analysis sections.]
    1. **Dataset Description:** Number of websites, time period and other relevant description.
    2. **Bayesian Parameter Estimation:** The parameters of our model, and how we use the Bayesian framework to estimate those.
-   3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites
-   4. **Model Interpretation:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation (to be found based on fitting) and diminishing return (co-limitation).   
+   3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites. --Figure: Plot to show the distributions for different parameters--
+   4. **Model Interpretation:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation (to be found based on fitting) and diminishing return (co-limitation). --Figure: Plot to show the diminishing returns--   
    5. **The Underlying Market Production:** How content generation in Stack Exchange websites reflect market production.
    6. **Case Study:** [*Note:* This subsection is optional. The purpose of this subsection is to present surprising cases (if any).] The curious case of websites deviating from the diminishing return.
-   7. **Uncovering Two Key Distributions:** Content generation in the light of two key distributions, user activity and subject POV (perspective). We attempt to establish the hypothesis that as number of users increase, individuals with fewer resources join network.
-   8. **Forecasting Content Generation:** The effectiveness of our model in content prediction task.
-   9. **Sensitivity Analysis / Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter.
+   7. **Uncovering Two Key Distributions:** Content generation in the light of two key distributions, user activity and subject POV (perspective). We attempt to establish the hypothesis that as number of users increase, individuals with fewer resources join network. --Figure: Plot to show user activity and subject POV distributions--
+   8. **Forecasting Content Generation:** The effectiveness of our model in content prediction task. --Figure: Plot to show prediction accuracy (line chart)--   
+   9. **Sensitivity Analysis / Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)--   
 5. **Empirical Analysis II (Applications)** 
-   1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale-- the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness. 
-    2. **Health of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we examine the adverse effect of scale on a set of health metrics.
+   1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale-- the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness. --Figure: Plot to show answer to question ratio fit for different number of users--  
+    2. **Health of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we examine the adverse effect of scale on a set of health metrics. --Figure: Plot to show answer to question ratio fit for different number of users-- 
 6. **Discussion**
    1. **Analysis of the Best Fit Model:** present theoretical analysis of the best fit model and the implications.
    2. **Implications and Future Directions:** the implications (new applications) of our research and potential research questions. 
