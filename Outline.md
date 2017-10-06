@@ -30,8 +30,9 @@ Here's the outline of the paper:
    9. **Sensitivity Analysis / Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)--   
 5. **Empirical Analysis II (Applications)** 
    1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale-- the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness. --Figure: Plot to show answer to question ratio fit for different number of users--  
-    2. **Health of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we examine the adverse effect of scale on a set of health metrics. --Figure: Plot to show answer to question ratio fit for different number of users-- 
+   2. **Health of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we investigate the adverse effect of scale on a set of health metrics. --Figure: Plot to show correlation between answer to question ratio and health metrics-- 
+   3. **Stability of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we investigate the adverse effect of scale on a set of health metrics. --Figure: Plot to show correlation between answer to question ratio and health metrics--
 6. **Discussion**
-   1. **Analysis of the Best Fit Model:** present theoretical analysis of the best fit model and the implications.
-   2. **Implications and Future Directions:** the implications (new applications) of our research and potential research questions. 
+   1. **Analysis of the Best Fit Model:** Presenting analytical results for the best fit model.
+   2. **Implications:** the implications of our research and potential research questions.
 7. **Conclusion**
