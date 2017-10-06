@@ -24,5 +24,5 @@
 6. **Conclusion**
 
 Here's a few alternative titles:
-**Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
-**The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
+- **Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
+- **The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
