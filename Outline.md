@@ -25,7 +25,7 @@ Here's the outline of the paper:
    4. **Model Interpretation:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation (to be found based on fitting) and diminishing return (co-limitation).   
    5. **The Underlying Market Production:** How content generation in Stack Exchange websites reflect market production.
    6. **Case Study:** [*Note:* This subsection is optional. The purpose of this subsection is to present surprising cases (if any).] The curious case of websites deviating from the diminishing return.
-   7. **Uncovering Population and Content Dynamics / Relating Population and Content Dynamics to Content Generation:** content generation in the light of population (activity distribution and evolution) and content (perspective distribution and evolution) dynamics. We attempt to establish the hypothesis that individuals are coming with lower resources.
+   7. **Uncovering Two Key Distributions:** Content generation in the light of two key distributions, user activity and subject POV (perspective). We attempt to establish the hypothesis that individuals are coming with lower resources.
    8. **Forecasting Content Generation:** the effectiveness of our model in prediction task.
    9. **Model Sensitivity / Sensitivity to Time Granularity:** the effectiveness study of our model under different time granularity, e.g., day, week, month, quarter.
 5. **Discussion**
