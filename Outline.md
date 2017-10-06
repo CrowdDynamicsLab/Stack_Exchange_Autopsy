@@ -1,8 +1,10 @@
 # Modeling the Dynamics of User Content Generation: A Case Study of Stack Exchange Websites
 Here's a few alternative titles for the paper:
+- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**
 - **Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
 - **The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
-- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**
+- **Survival of the Fittest, not Fattest: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
+
 
 
 
