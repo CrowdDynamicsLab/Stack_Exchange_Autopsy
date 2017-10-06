@@ -2,7 +2,7 @@
 Here's a few alternative titles for the paper:
 - **Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
 - **The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
-- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**'
+- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**
 
 
 
@@ -22,8 +22,9 @@ Here's the outline of the paper:
    1. **Dataset Description:** Number of websites, time period and other relevant description.
    2. **Bayesian Parameter Estimation:** The parameters of our model, and how we use the Bayesian framework to estimate those.
    3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites (with diagrams).
-   4. **Model Interpretation/ Explaining Content Generation:** explaining content generation in Stack Exchange websites in the    5. **Explaining Content Generation using Market Production / The Underlying Market Production:** how content generation in Stack Exchange websites reflect market production.
-   6. **Case Study:** the curious case of websites deviating from the diminishing return.
+   4. **Model Interpretation:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation () and diminishing return (co-limitation).   
+   5. **The Underlying Market Production:** How content generation in Stack Exchange websites reflect market production.
+   6. **Case Study:** [This subsection is optional] the curious case of websites deviating from the diminishing return.
    7. **Uncovering Population and Content Dynamics / Relating Population and Content Dynamics to Content Generation:** content generation in the light of population (activity distribution and evolution) and content (perspective distribution and evolution) dynamics. We attempt to establish the hypothesis that individuals are coming with lower resources.
    8. **Forecasting Content Generation:** the effectiveness of our model in prediction task.
    9. **Model Sensitivity / Sensitivity to Time Granularity:** the effectiveness study of our model under different time granularity, e.g., day, week, month, quarter.
