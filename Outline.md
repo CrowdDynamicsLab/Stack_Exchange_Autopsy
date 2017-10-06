@@ -2,14 +2,16 @@
 Here's a few alternative titles for the paper:
 - **Failing at Scale: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
 - **The Size Conundrum: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
-- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**
+- **Dynamics of User Content Generation in Stack Exchange Websites: Modeling, Empirical Results, and Applications**'
+
+
 
 Here's the outline of the paper:
 1. **Introduction**
 2. **Related Work**
 3. **Modeling User Content Generation**
-   1. **Desiderata:** what are the desired properties of our content generation model, e.g., macroscopic, explanatory power, predictive power, parsimony/minimalism, comprehensive.
-   2. **Problem Formulation:** how we formulate the content generation model. Instead of directly modeling content generation as a function of time, we are modeling it in terms of associated factors, which themselves are time-dependent (functions of time).
+   1. ~~**Desiderata:** The desired properties of our content generation model, e.g., macroscopic, explanatory power, predictive power, parsimony/minimalism, comprehensive.~~
+   2. ~~**Problem Formulation:** Formulating the model-- instead of directly modeling content generation as a dynamic process (functions of time), we are modeling it in terms of associated factors, which themselves are dynamic.~~
    3. **Factors of Content Generation:** recognize the key factors that drive content generation in UGC platforms. In particular, we recognize the factors of content generation for different types of contents in Stack Exchange websites. 
    4. **Growth Functions:** alternative growth functions to capture the effect of a single factor on content generation. 
    5. **Interaction among the Factors:** potential interaction among the factors and resultant relationships. 
