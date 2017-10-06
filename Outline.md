@@ -22,9 +22,9 @@ Here's the outline of the paper:
    1. **Dataset Description:** Number of websites, time period and other relevant description.
    2. **Bayesian Parameter Estimation:** The parameters of our model, and how we use the Bayesian framework to estimate those.
    3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites (with diagrams).
-   4. **Model Interpretation:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation () and diminishing return (co-limitation).   
+   4. **Model Interpretation:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation (to be found based on fitting) and diminishing return (co-limitation).   
    5. **The Underlying Market Production:** How content generation in Stack Exchange websites reflect market production.
-   6. **Case Study:** [This subsection is optional] the curious case of websites deviating from the diminishing return.
+   6. **Case Study:** [*Note:* This subsection is optional. The purpose of this subsection is to present surprising cases (if any).] The curious case of websites deviating from the diminishing return.
    7. **Uncovering Population and Content Dynamics / Relating Population and Content Dynamics to Content Generation:** content generation in the light of population (activity distribution and evolution) and content (perspective distribution and evolution) dynamics. We attempt to establish the hypothesis that individuals are coming with lower resources.
    8. **Forecasting Content Generation:** the effectiveness of our model in prediction task.
    9. **Model Sensitivity / Sensitivity to Time Granularity:** the effectiveness study of our model under different time granularity, e.g., day, week, month, quarter.
