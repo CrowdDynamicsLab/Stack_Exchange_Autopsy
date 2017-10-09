@@ -6,8 +6,6 @@ Here's a few alternative titles for the paper:
 - **Survival of the Fittest, not Fattest: Modeling the Dynamics of User Content Generation in Stack Exchange Websites**
 
 
-
-
 Here's the outline of the paper:
 1. **Introduction**
 2. **Related Work**
@@ -37,7 +35,8 @@ Here's the outline of the paper:
    2. **Decline in Health:** As the survival of CQA platforms direcly depend on content generation, we investigate the adverse effect of scale on a set of health metrics. --Figure: Plot to show correlation between answer to question ratio and health metrics-- 
    3. **Decline in Stability:** The stability of CQA platforms also depend on user activity distribution. We investigate the stability of different Stack Exchange websites. --Figure: Plot to show stability as a function of economic parameters/size/etc.--
    4. **Affects on Controllability:** The controllability of CQA platforms also depend on user activity distribution. We investigate the controllability of different Stack Exchange websites. --Figure: Plot to show controllability as a function of economic parameters/size/etc.--
-7. **Discussion**  [*Note:* This section is optional. The implications of our research can be reported in Conclusion.]
-   1. **Analysis of the Best Fit Model:** Presenting analytical results for the Cobb-Douglas model.
-   2. **Implications:** The implications of our research and new research questions.
+7. **Discussion**  [*Note:* This section is optional.]
+   1. **Complementary and Alternative Models:** Presenting complementary and alternative models for predicting and explaining user content generation.
+       1. **Hawkes Model:** Hawkes intensity process (HIP) to predict and explain user content generation.
+   2. **Analysis of the Economic Model:** Presenting analytical results for the Cobb-Douglas model.
 8. **Conclusion**
