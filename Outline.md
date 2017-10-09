@@ -31,7 +31,7 @@ Here's the outline of the paper:
    8. **Forecasting Content Generation:** The effectiveness of our model in content prediction task. --Figure: Plot to show prediction accuracy (line chart)--   
    9. **Sensitivity Analysis / Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)--   
    10. **Why Economic Model Works? / Stability of Core:** Showing the presence of a stable core that maintains the economic model. --Plots to show the age and size of core--
-5. **Empirical Analysis II (Applications)** 
+5. **Diseconomies of Scale** 
    1. **Diseconomies of Scale:** Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale— the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness. --Figure: Plot to show answer to question ratio fit for different number of users--  
    2. **Health of CQA Platforms:** As the survival of CQA platforms direcly depend on content generation, we investigate the adverse effect of scale on a set of health metrics. --Figure: Plot to show correlation between answer to question ratio and health metrics-- 
    3. **Stability of CQA Platforms:** The stability of CQA platforms depend on user activity distribution. We investigate the stability of different Stack Exchange websites. --Figure: Plot to show stability as a function of economic parameters/size/etc.--
