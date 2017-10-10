@@ -20,7 +20,7 @@ Here's the outline of the paper:
    6. **Proposed Model:** Alternative models capturing different possible relationships among the factors. We examine special cases, and establish connection between these cases and classical concepts such as the law of the minimum, economic production, etc.
 4. **Empirical Analysis**
    1. **Dataset Description:** Number of websites, time period and other relevant description.
-   2. **Bayesian Parameter Estimation:** The parameters of our model, and how we use the Bayesian framework to estimate those.
+   2. **Parameter Estimation:** The parameters of our model, and how we estimate those.
    3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites. --Figure: Plot to show the distributions for different parameters--
    4. **Forecasting Content Generation:** The effectiveness of our model in content prediction task. --Figure: Plot to show prediction accuracy (line chart)-- 
    5. **Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)-- 
