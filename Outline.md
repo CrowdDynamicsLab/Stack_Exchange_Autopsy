@@ -24,7 +24,8 @@ Here's the outline of the paper:
    3. **Model Fitting Results / Parameter Analysis:** Best fit parameter values (and distribution) for different Stack Exchange websites. --Figure/Table: Plot/table to show the distributions for different parameters--
    4. **Forecasting Content Generation:** The effectiveness of our model in content prediction task. --Figure: Plot to show prediction accuracy (line chart)-- 
    5. **Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)-- 
-   6. **Transfer Learning:** Using parameter distributions learnt from old Stack Exchange websites as prior distributions for new Stack Exchange websites. --Figure: Plot to compare the posterior learnt using transfer learning with the posterior learnt using more data points in future (bar chart)-- 
+   6. **Transfer Learning:** Using parameter distributions learnt from old Stack Exchange websites as prior distributions for new Stack Exchange websites. --Figure: Plot to compare the posteriors learnt using transfer learning with the posteriors learnt using more data points in future (bar chart)-- 
+   7. **User to Asker/Answerer/Commenter:** Computing/predicting number of askers/answerers/commenters from number of users. --Figure: Plot to show the correlation between number of users and number of askers/answerers/commenters-- 
 4. **Model Interpretation and Implication**
    1. **Diminishing Return:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation (to be found based on fitting) and diminishing return (co-limitation). --Figure: Plot to show the diminishing returns--   
    2. **The Underlying Market Production:** How content generation in Stack Exchange websites reflect market production.
