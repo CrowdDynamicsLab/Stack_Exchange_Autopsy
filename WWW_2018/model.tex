@@ -19,7 +19,7 @@ D5. \textit{Comprehensive:} The model should encompass the dynamics of content g
 We considered several alternative models to comprehend the content generation dynamics in CQA platforms. Our first attempt was to model user content generation as \lq self-exciting\rq\ point process. In this attempt, we designed and implemented several variants of Hawkes process. Our second attempt was to model user content generation using \lq stage-structured\rq\ projection matrix. In this attempt, we built variants of Leftkovitch matrix. Although both variants of models showed promise, they failed to meet one or more requirements mentioned above. In particular, the Hawkes process based models lacked long term prediction accuracy, while the Leftkovitch matrix based models lacked prediction accuracy and minimalism (large number of parameters). 
 
 \subsection{Factor Based Model} 
-Motivated by the macroeconomic production models, we focused on designing factor based model for user content generation in CQA platforms. Instead of directly modeling user content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic. From this point forward, we report the factors of content generation for different types of content; present basis functions to capture the effect of a given factor on content generation; discuss the potential interaction among the factors of a given content; and finally introduce models that capture user content generation for different types of content.
+Motivated by the macroeconomic production models, we focused on designing factor based model for user content generation in CQA platforms. Instead of directly modeling user content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic. From this point forward, we report the factors of content generation for different content types; discuss potential basis functions to capture the effect of a single factor, and the potential interaction among multiple factors; and finally introduce the alternative models based on the basis functions and factor interactions.
 
 \textbf{Factors of Content Generation.} We recognize two key factors that drive content generation in CQA platforms, namely user participation and content dependency.
 
@@ -71,12 +71,10 @@ Based on the above discussion, we identify the key factors of content generation
 \begin{equation*}
 N_q = f_q(U_q)
 \end{equation*}
-
 \item There are two key factors in generating answers: questions, and users who answer questions (aka answeres). 
 \begin{equation*}
 N_a = f_a(N_q, U_a)
 \end{equation*}
-
 \item There are three key factors in generating comments: questions, answers, and users who make comments on these questions and answers (aka commenters). 
 \begin{equation*}
 N_c^q = f_{c^q}(N_q, U_c)
@@ -87,14 +85,14 @@ N_c^a = f_{c^a}(N_a, U_c)
 \begin{equation*}
 N_c = N_c^q + N_c^a
 \end{equation*}
-
 \end{itemize}
 
-\textbf{Basis Functions.} After identifying the factors of content generation, we use basis functions to capture the effect of a given factor on a particular type of content. While there is a variety of basis functions available for regression, we consider three basis functions widely used in economics and growth modeling, namely power-- $g(x) = ax^{\lambda}$, exponential-- $g(x) = ab^x$, and sigmoid-- $g(x) = \frac{L}{1+e^{k(x-x_0)}}$. 
+The aforementioned functional relationships imply that the dynamics of user content generation for each content type depends on the function describing factor dependent content generation, and the availability of factors. These equations embody two critical assumptions. First, they assume that different content types interact only through their use of factors--- how each content type consumes a factor. Secondly, they assume that functions describing content generation depends on the interaction among the factors-- how the factors are related.
 
-\textbf{Interaction among the Factors.} Potential interaction among the factors and resultant relationships.
+\textbf{Basis Functions.} We use basis functions to capture the effect of a given factor on a particular type of content. While there is a variety of basis functions available for regression, we consider three basis functions widely used in economics and growth modeling, namely power-- $g(x) = ax^{\lambda}$, exponential-- $g(x) = ab^x$, and sigmoid-- $g(x) = \frac{L}{1+e^{k(x-x_0)}}$. 
+
+\textbf{Interaction among the Factors.} We use 
 
 
-Alternative models capturing different possible relationships among the factors. We examine special cases, and establish connection between these cases and classical concepts such as the law of the minimum, economic production, etc.
 
 
