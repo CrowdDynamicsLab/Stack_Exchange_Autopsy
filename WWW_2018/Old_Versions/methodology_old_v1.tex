@@ -1,0 +1,99 @@
+\section{Motivation}
+Interacting population based models have been successfully applied in a variety of domains to model population growth. In recent times, there has been an increasing interest in applying such models to explain the growth/decline in online social networks \cite{Ribeiro2014,Kumar2010}. While these existing models have been fairly successful in capturing population growth, they have some fundamental limitations such as incorporating largely unobservable factor(s), lack of interpretation in explaining growth, not incorporating observable content factors. %artificial segmentation of population \cite{Kumar2010}
+
+Kumar et al. \cite{Kumar2010} introduced a two-sided (two types of users: blue and green) market model based on the hypothesis that a blue user decides to join a platform based on the platforms' current proportion of green users and vice versa. However, in most social networks, only a small fraction of user community is visible to a potential user, and the proportion of a particular type of user in the network remains largely unobservable. 
+
+Ribeiro et al. \cite{Ribeiro2014} proposed a daily active user (DAU) prediction model based on a set of reaction-diffusion-decay equations describing the interactions between active members, inactive members, and not-yet-members. The proposed model captures the number of daily active users using a set of growth parameters. However, these growth parameters provide little insight in understanding the actual reasons behind the growth/decline in DAU. 
+
+We observe that while population interaction can model population growth in certain social networks, it provides little insight in explaining growth. We hypothesize that population content interaction is a more effective means to model and explain growth in both population and content. Growth models based on population content interaction can reveal the interdependency between the two, i.e., how growth/decline in one affects the other. Such insights are valuable for content based networks, in particular Q\&A networks. In this paper, we focus on jointly modeling population and growth in Stack Exchange websites, revealing the interdependency between the two.
+
+\section{Population Content Interaction}
+In Stack Exchange websites, a We present a set of reactions and inductions that capture the interaction between population and content in Stack Exchange websites. 
+\subsection{Reaction for Content Generation}
+We present a set of population content inductions/reactions to capture the interaction between population and content in Stack Exchange websites. %We derive these reactions based on the economic concept: \emph{factors of production}. In economics, factors of production are what is used in the production process to produce output. 
+
+
+\begin{table}[hbt]
+	\centering
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Symbol} & \textbf{Interpretation}\\ \hline
+	$U_q(t)$ & \# of users who asked questions at time $t$\\
+	$U_a(t)$ & \# of users who answered questions at time $t$\\
+	$U_c(t)$ & \# of users who made comments at time $t$\\
+	$\Delta N_q(t)$ & \# of active questions at time $t$\\
+	$\Delta N_a(t)$ & \# of answers to active questions at time $t$\\
+	$\Delta N_c^q(t)$ & \# of comments to active questions at time $t$\\
+	$\Delta N_c^a(t)$ & \# of comments to active answers at time $t$\\
+	$\Delta N_{+v}^q(t)$ & \# of upvotes to active questions at time $t$\\
+	$\Delta N_{+v}^a(t)$ & \# of upvotes to active answers at time $t$\\
+	$\alpha_{i, j}$ & Coefficient of $i$th input in $j$th induction/reaction\\
+	$\beta_{i, j}$ & Coefficient of $i$th output in $j$th induction/reaction\\ \hline
+	 \end{tabular}
+    \caption{Notations in inductions/reactions}
+\end{table}
+
+\textbf{I. Answer Reaction:} In a Stack Exchange website, there are two key factors in generating answers: questions, and users who answer questions (aka answeres). Based on these two factors, we assert the following reaction to generate answers.
+\begin{equation*}
+\alpha_{1, 1} \Delta N_q + \alpha_{2, 1} U_a \Longrightarrow \beta_{1, 1} \Delta N_a
+\end{equation*}
+\indent \textbf{II. Question Reaction:} In a Stack Exchange website, there is a single key factor in generating questions: users who ask questions (aka askers). Based on this single factor, we assert the following reaction to generate questions.
+\begin{equation*}
+\alpha_{1, 2} U_q \Longrightarrow \beta_{1, 2} \Delta N_q
+\end{equation*}
+\indent \textbf{III. Answerer Induction:} In a Stack Exchange website, there are two key factors in inducing the number of answerers at time $t$: number of answerers at time $(t-1)$, and the utility received by these answerers at time $(t-1)$. Now, in a simplistic model the utility received by the answerers at time $(t-1)$ can be captured using the number of active questions at time $(t-1)$. Based on these factors, we assert the following induction to induce the number of answerers at time $t$.
+\begin{equation*}
+\alpha_{1, 3} U_a(t-1) + \alpha_{2, 3} \Delta N_q(t-1) \Longrightarrow \beta_{1, 3} U_a(t)
+\end{equation*} 
+\noindent An extended interaction model where answerers' utility is defined in terms of questions, comments to answers, and upvotes to answers is as follows.
+\begin{equation*}
+\left.
+\begin{aligned}
+& \alpha_{1, 3} U_a(t-1) + \alpha_{2, 3} \Delta N_q(t-1) +\\
+& \alpha_{3, 3} \Delta N_c^a(t-1) + \alpha_{4, 3} \Delta N_{+v}^a(t-1)
+\end{aligned}
+\right\}
+\Longrightarrow \beta_{1, 3} U_a(t)
+\end{equation*}
+\indent \textbf{IV. Asker Induction:} In a Stack Exchange website, there are two key factors in inducing the number of askers at time $t$: number of askers at time $(t-1)$, and the utility received by these askers at time $(t-1)$. Now, in a simplistic model the utility received by the askers at time $(t-1)$ can be captured using the number of active answers at time $(t-1)$. Based on these factors, we assert the following reaction to induce the number of askers at time $t$. 
+\begin{equation*}
+\alpha_{1, 4} U_q(t-1) + \alpha_{2, 4} \Delta N_a(t-1) \Longrightarrow \beta_{1, 4} U_q(t)
+\end{equation*}
+\noindent An extended interaction model where askers' utility is defined in terms of answers, comments to questions, and upvotes to questions is as follows.    
+\begin{equation*}
+\left.
+\begin{aligned}
+& \alpha_{1, 4} U_q(t-1) + \alpha_{2, 4} \Delta N_a(t-1) +\\
+& \alpha_{3, 4} \Delta N_c^q(t-1) + \alpha_{4, 4} \Delta N_{+v}^q(t-1)
+\end{aligned}
+\right\}
+\Longrightarrow \beta_{1, 4} U_q(t)
+\end{equation*}
+
+\section{Growth Model}
+A production function captures the relationship between the output of a production process, and the inputs or factors of production. We use the Cobb-Douglas production function to capture the relationship between the output, and the inputs or factors in our inductions/reactions. The Cobb-Douglas function is of following form.
+\begin{equation*}
+Y = A\prod_{i=1}^{n} X_i^{\lambda_i}
+\end{equation*} 
+\noindent Here, $Y$ represents total production at time $t$, $X_i$ represents total $i$th input at time $t$, $\lambda_i$ represents output elasticity of the $i$th input, and $A$ represents total factor productivity. Based on our population content inductions/reactions and the aforementioned production function, we derive the following set of relationships between population and content. 
+\begin{equation}
+N_a = A_1 N_q^{\lambda_{1, 1}} U_a^{\lambda_{2, 1}}
+\end{equation}
+\begin{equation}
+N_q = A_2 U_q^{\lambda_{1, 2}}
+\end{equation}
+\begin{equation}
+U_a(t) = A_3 [U_a(t-1)]^{\lambda_{1, 3}} [N_q(t-1)]^{\lambda_{2, 3}}
+\end{equation}
+\begin{equation}
+U_q(t) = A_4 [U_q(t-1)]^{\lambda_{1, 4}} [N_q(t-1)]^{\lambda_{2, 4}} 
+\end{equation}
+\indent In addition to these relationships, we incorporate resource constraints on our growth model. More specifically, in a Stack Exchange website, every user $u$ has a fixed resource capacity $r_u$ at a given time, which he/she can use to ask questions, answer questions, and make comments. We assume voting activity consumes negligible resources. Now, the resource capacity distribution $P_r$ can be defined as the probability that a user--chosen uniformly at random from the set of all users--has resource capacity $c$. The mean resource capacity $z$ can be calculated as $z = \sum_{r}{rP_r}$. To incorporate resource constraint in our growth model in a simplistic manner, we hold the assumption that every user has the mean resource capacity $z$. This assumption is based on the mean field approximation, which allows us to focus on the overall resource capacity of the entire population. 
+\begin{equation}
+\Delta N_q(t) + \Delta N_a(t) + \Delta N_c(t) = zU(t)
+\end{equation}
+
+
+
+
+

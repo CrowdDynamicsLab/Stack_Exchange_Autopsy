@@ -1,0 +1,53 @@
+\iffalse
+\begin{figure}
+  \centering
+  \tikz{ %
+    \node[latent] (alpha) {$\alpha$} ; %
+    \node[latent, right=of alpha] (theta) {$\theta$} ; %
+    \node[latent, right=of theta] (z) {z} ; %
+    \node[latent, above=of z] (beta) {$\beta$} ; %
+    \node[obs, right=of z] (w) {w} ; %
+    \plate[inner sep=0.25cm, xshift=-0.12cm, yshift=0.12cm] {plate1} {(z) (w)} {N}; %
+    \plate[inner sep=0.25cm, xshift=-0.12cm, yshift=0.12cm] {plate2} {(theta) (plate1)} {M}; %
+    \edge {alpha} {theta} ; %
+    \edge {theta} {z} ; %
+    \edge {z,beta} {w} ; %
+  }
+\end{figure}
+\fi
+
+\begin{figure}
+  \centering
+  \tikz{ %
+  	\node[obs] (answerers) {$U_a$} ; %
+    \node[obs, right=of answerers] (answers) {$N_a$} ; %
+    \node[obs, right=of answers] (comments) {$N_c$} ; %
+    \node[obs, above=of answerers] (askers) {$U_q$} ; %
+    \node[obs, right=of askers] (questions) {$N_q$} ; %
+    \node[obs, right=of questions] (commenters) {$U_c$} ; %
+    
+    \edge {askers} {questions} ; %
+    \edge {questions, answerers} {answers} ; %
+    \edge {questions, answers, commenters} {comments} ; %   
+  }
+\end{figure}
+
+\begin{table}[hbt]
+	\centering
+	\begin{tabular}{rl}
+	\toprule
+	\textbf{Symbol} & \textbf{Interpretation}\\ \midrule
+	$U_q(t)$ & \# of users who asked questions at time $t$\\
+	$U_a(t)$ & \# of users who answered questions at time $t$\\
+	$U_c(t)$ & \# of users who made comments at time $t$\\
+	$\Delta N_q(t)$ & \# of active questions at time $t$\\
+	$\Delta N_a(t)$ & \# of answers to active questions at time $t$\\
+	$\Delta N_c^q(t)$ & \# of comments to active questions at time $t$\\
+	$\Delta N_c^a(t)$ & \# of comments to active answers at time $t$\\
+	$\Delta N_{+v}^q(t)$ & \# of upvotes to active questions at time $t$\\
+	$\Delta N_{+v}^a(t)$ & \# of upvotes to active answers at time $t$\\
+	$\alpha_{i, j}$ & Coefficient of $i$th input in $j$th induction/reaction\\
+	$\beta_{i, j}$ & Coefficient of $i$th output in $j$th induction/reaction\\ \bottomrule
+	 \end{tabular}
+    \caption{Notations in inductions/reactions}
+\end{table}

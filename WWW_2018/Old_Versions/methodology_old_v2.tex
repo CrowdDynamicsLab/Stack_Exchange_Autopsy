@@ -1,0 +1,127 @@
+\section{Modeling Content Growth}
+We conceptualize content generation in UGC platforms as economic production. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services--the output. An economic output is a good or service that has value and contributes to the utility received by individuals. We assert that users in Stack Exchange websites function as labor to generate content, which has value and contributes to the utility received by the users. In the following subsections, we report the factors of production or inputs for different types of content generation, present a production function to capture the relationship between the output and the inputs of production, and introduce a set of growth models that capture long-run growth of different types of content.
+
+%
+
+\subsection{Factors of Production for Content Generation}
+In economics, \emph{factors of production}, or inputs are what are used in the production process to produce output. We identify the factors of production for three types of content in Stack Exchange websites: question, answer, and comment. %We derive these reactions based on the economic concept: \emph{factors of production}. In economics, factors of production are what is used in the production process to produce output. 
+\begin{table}[hbt]
+	\centering
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Symbol} & \textbf{Interpretation}\\ \hline
+	$U_q(t)$ & \# of users who asked questions at time $t$\\ \hline
+	$U_a(t)$ & \# of users who answered questions at time $t$\\ \hline
+	$U_c(t)$ & \# of users who made comments at time $t$\\ \hline
+	$\Delta N_q(t)$ & \# of active questions at time $t$\\ \hline
+	$\Delta N_a(t)$ & \# of answers to active questions at time $t$\\ \hline
+	$\Delta N_c^q(t)$ & \# of comments to active questions at time $t$\\ \hline
+	$\Delta N_c^a(t)$ & \# of comments to active answers at time $t$\\ \hline
+	$\Delta N_{+v}^q(t)$ & \# of upvotes to active questions at time $t$\\ \hline
+	$\Delta N_{+v}^a(t)$ & \# of upvotes to active answers at time $t$\\ \hline
+	$f_w$ & The functional relationship for content $w$\\ \hline
+	 \end{tabular}
+    \caption{Notations}
+\end{table}
+
+\indent \textbf{I. Question Generation:} In a Stack Exchange website, there is a single factor in generating questions: users who ask questions (aka askers). Based on this factor, question generation can be expressed using the following functional form.
+\begin{equation*}
+\Delta N_q = f_q(U_q)
+\end{equation*}
+\indent \textbf{II. Answer Generation:} In a Stack Exchange website, there are two key factors in generating answers: questions, and users who answer questions (aka answeres). Based on these two factors, answer generation can be expressed using the following functional form.
+\begin{equation*}
+\Delta N_a = f_a(\Delta N_q, U_a)
+\end{equation*}
+\textbf{III. Comment Generation:} In a Stack Exchange website, there are two key factors in generating comments: questions or answers, and users who make comments on these questions or answers (aka commenters). Based on these two factors, comment generation can be expressed using the following functional forms.
+\begin{equation*}
+\Delta N_c^q = f_{c^q}(\Delta N_q, U_c)
+\end{equation*}
+\begin{equation*}
+\Delta N_c^a = f_{c^a}(\Delta N_a, U_c)
+\end{equation*}
+
+\subsection{Production Function}
+A production function captures the relationship between the output of a production process, and the inputs or factors of production. We use the Cobb-Douglas production function to capture the relationship between content and the associated inputs, based on the framework of neoclassical economics. The Cobb-Douglas function is of following form.
+\begin{equation*}
+Y = A\prod_{i=1}^{n} X_i^{\lambda_i}
+\end{equation*} 
+\noindent Here, $Y$ represents total production at time $t$, $X_i$ represents total amount of input $i$ at time $t$, $\lambda_i$ represents output elasticity of input $i$, and $A$ represents total factor productivity. 
+
+\subsection{Growth Models}
+Based on our factors of production for content generation and the Cobb-Douglas production function, we derive the following set of models to capture content growth in Stack Exchange websites. 
+\begin{equation}
+\Delta N_q = A_2 U_q^{\lambda_{1, 2}}
+\end{equation}
+\begin{equation}
+\Delta N_a = A_1 \Delta N_q^{\lambda_{1, 1}} U_a^{\lambda_{2, 1}}
+\end{equation}
+\begin{equation}
+\Delta N_c^q = A_3 \Delta N_q^{\lambda_{1, 3}} U_c^{\lambda_{2, 3}}
+\end{equation}
+\begin{equation}
+\Delta N_c^a = A_4 \Delta N_a^{\lambda_{1, 4}} U_c^{\lambda_{2, 4}}
+\end{equation}
+
+
+\iffalse
+\indent \textbf{III. Answerer Induction:} In a Stack Exchange website, there are two key factors in inducing the number of answerers at time $t$: number of answerers at time $(t-1)$, and the utility received by these answerers at time $(t-1)$. Now, in a simplistic model the utility received by the answerers at time $(t-1)$ can be captured using the number of active questions at time $(t-1)$. Based on these factors, we assert the following induction to induce the number of answerers at time $t$.
+\begin{equation*}
+\alpha_{1, 3} U_a(t-1) + \alpha_{2, 3} \Delta N_q(t-1) \Longrightarrow \beta_{1, 3} U_a(t)
+\end{equation*} 
+\noindent An extended interaction model where answerers' utility is defined in terms of questions, comments to answers, and upvotes to answers is as follows.
+\begin{equation*}
+\left.
+\begin{aligned}
+& \alpha_{1, 3} U_a(t-1) + \alpha_{2, 3} \Delta N_q(t-1) +\\
+& \alpha_{3, 3} \Delta N_c^a(t-1) + \alpha_{4, 3} \Delta N_{+v}^a(t-1)
+\end{aligned}
+\right\}
+\Longrightarrow \beta_{1, 3} U_a(t)
+\end{equation*}
+\indent \textbf{IV. Asker Induction:} In a Stack Exchange website, there are two key factors in inducing the number of askers at time $t$: number of askers at time $(t-1)$, and the utility received by these askers at time $(t-1)$. Now, in a simplistic model the utility received by the askers at time $(t-1)$ can be captured using the number of active answers at time $(t-1)$. Based on these factors, we assert the following reaction to induce the number of askers at time $t$. 
+\begin{equation*}
+\alpha_{1, 4} U_q(t-1) + \alpha_{2, 4} \Delta N_a(t-1) \Longrightarrow \beta_{1, 4} U_q(t)
+\end{equation*}
+\noindent An extended interaction model where askers' utility is defined in terms of answers, comments to questions, and upvotes to questions is as follows.    
+\begin{equation*}
+\left.
+\begin{aligned}
+& \alpha_{1, 4} U_q(t-1) + \alpha_{2, 4} \Delta N_a(t-1) +\\
+& \alpha_{3, 4} \Delta N_c^q(t-1) + \alpha_{4, 4} \Delta N_{+v}^q(t-1)
+\end{aligned}
+\right\}
+\Longrightarrow \beta_{1, 4} U_q(t)
+\end{equation*}
+
+\begin{equation}
+U_a(t) = A_3 [U_a(t-1)]^{\lambda_{1, 3}} [N_q(t-1)]^{\lambda_{2, 3}}
+\end{equation}
+\begin{equation}
+U_q(t) = A_4 [U_q(t-1)]^{\lambda_{1, 4}} [N_q(t-1)]^{\lambda_{2, 4}} 
+\end{equation}
+\indent In addition to these relationships, we incorporate resource constraints on our growth model. More specifically, in a Stack Exchange website, every user $u$ has a fixed resource capacity $r_u$ at a given time, which he/she can use to ask questions, answer questions, and make comments. We assume voting activity consumes negligible resources. Now, the resource capacity distribution $P_r$ can be defined as the probability that a user--chosen uniformly at random from the set of all users--has resource capacity $c$. The mean resource capacity $z$ can be calculated as $z = \sum_{r}{rP_r}$. To incorporate resource constraint in our growth model in a simplistic manner, we hold the assumption that every user has the mean resource capacity $z$. This assumption is based on the mean field approximation, which allows us to focus on the overall resource capacity of the entire population. 
+\begin{equation}
+\Delta N_q(t) + \Delta N_a(t) + \Delta N_c(t) = zU(t)
+\end{equation}
+
+
+\section{Economies of Scale in Content Generation}
+
+\begin{table*}[hbt]
+	\centering
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Related work} & \textbf{Summary}\\ \hline
+	Network effect adoption models & individual rationality and adoption costs and utilities\\
+	\cite{Kumar2010}\cite{Kumar2010}\cite{Kumar2010}\cite{Kumar2010}\cite{Kumar2010}\cite{Kumar2010}\cite{Kumar2010}\cite{Kumar2010}\cite{Kumar2010} & are modeled in a game-theoretic framework.\\ \hline
+	
+	 \end{tabular}
+    \caption{Summary of related work}
+\end{table*}
+\fi
+
+
+
+
+
+
