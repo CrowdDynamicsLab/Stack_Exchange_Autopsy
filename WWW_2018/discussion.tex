@@ -1,0 +1,20 @@
+\section{Discussion}
+\subsection{Alternative and Complementary Models}
+
+\textbf{Hawkes Process.} The Hawkes process is a mathematical model for self-exciting processes that models a sequence of arrivals of some event over time, e.g., natural disasters, gang violence, trade orders.  Each arrival excites the process in the sense that the chance of a subsequent arrival is increased for some time period after the initial arrival. 
+
+Content generation in Stack Exchange websites can be conceptualized as Hawkes process with multiple event types. Here, arrival of certain type of event (e.g., questions) excites the arrival of other types of event (e.g., answers, comments). 
+
+A univariate Hawkes process is defined to be a self-exciting temporal point process $N$ whose conditional intensity function $\lambda = \lambda(t)$ is defined to be
+
+ $$\lambda(t) = \mu(t)+\sum_{i:\tau_i<t}g(t-\tau_i),$$
+ 
+where $\mu(t)$ is the background rate of the process  $N$, where $\tau_i$ are the points/events in time occurring prior to time t, and where $g$ is a function which governs the clustering density of N. 
+
+The multi-dimensional Hawkes process is defined by a $U$-dimensional point process $N_t^u, u =1, . . . , U$, with the conditional intensity for the $u$-th dimension expressed as follows:
+$$\lambda_u(t) = \mu_u + \sum_{i:\tau_i<t} g_{uu_i}(t-\tau_i),$$
+
+where $\mu_u \ge 0$ is the base intensity for the $u$-th Hawkes process. The kernel $g_{uu^\prime}(t) \ge 0$ captures the mutually exciting property between the $u$-th and $u^\prime$-th dimension. Intuitively, it captures the dynamics of influence of events occurred in the $u^\prime$-th dimension to the $u$-th dimension. Larger value of $g_{uu^\prime}(t)$  indicates that events in $u^\prime$-th dimension are more likely to trigger a event in the $u$-th dimension after a time interval $t$.
+
+\textbf{Leftkovitch Matrix.}
+
