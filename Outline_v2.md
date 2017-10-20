@@ -14,14 +14,15 @@ Here's the outline of the paper:
    5. **User to Asker/Answerer/Commenter:** Computing/predicting number of askers/answerers/commenters from number of users. --Figure: Plot to show the correlation between number of users and number of askers/answerers/commenters--
 5. Dataset
 6. **Evaluating Our Proposed Models**
-In this section, we examine our proposed models from three different perspectives: the accuracy of fitting content generation time series observed in our dataset, the performance of predicting content generation in long and short run, and the perplexity of characterizing content generation dynamics at early stage.
-   1. **Parameter Estimation:** The parameters of our model, and how we estimate those.
-   2. **Model Fitting Results:** Best fit parameter values (and distribution) for different Stack Exchange websites. --Figure/Table: Plot/table to show the distributions for different parameters--
-   3. **Forecasting Content Generation:** The effectiveness of our model in content prediction task. --Figure: Plot to show prediction accuracy (line chart)--
+In this section, we examine our proposed models from three different perspectives: the accuracy of fitting content generation time series observed in our dataset (Section 6.1), the performance of predicting content generation in long and short run (Section 6.2), and the perplexity of characterizing content generation dynamics at early stage (Section 6.3).
+   1. **Model Fitting:** 
+       1. **Parameter Estimation:** The parameters of our model, and how we estimate those.
+       2. **Fitting Results:** Best fit parameter values (and distribution) for different Stack Exchange websites. --Figure/Table: Plot/table to show the distributions for different parameters--
+   2. **Forecasting Content Generation:** The effectiveness of our model in content prediction task. --Figure: Plot to show prediction accuracy (line chart)--
        1. **Sensitivity to Time Granularity:** The effectiveness study of our model under different time granularity, e.g., day, week, month, quarter. --Figure: Plot to show prediction accuracy for different time granularity (bar chart)--
-   4. **Transfer Learning:** Using parameter distributions learnt from old Stack Exchange websites as prior distributions for new Stack Exchange websites. --Figure: Plot to compare the posteriors learnt using transfer learning with the posteriors learnt using more data points in future (bar chart)--
+   3. **Characterizing Dynamics at Early Stage:** Using parameter distributions learnt from old Stack Exchange websites as prior distributions for new Stack Exchange websites. --Figure: Plot to compare the posteriors learnt using transfer learning with the posteriors learnt using more data points in future (bar chart)--
 7. **Model Interpretation**
-In this section, we interpret our model and its foundations by characterizing knowledge market (Section 6.1), revealing two key distributions that control the market (Section 6.2), and uncovering the stable core that maintains market equilibrium (Section 6.3).
+In this section, we interpret our model and its foundations by characterizing knowledge market (Section 7.1), revealing two key distributions that control the market (Section 7.2), and uncovering the stable core that maintains market equilibrium (Section 7.3).
    1. **Characterizing Knowledge Market:** Explaining content generation in Stack Exchange websites in the light of Cobb-Douglas equation (to be found based on fitting) and diminishing return (co-limitation). --Figure: Plot to show the diminishing returns--
    2. **Two Key Distributions:** We reveal two key distributions that control content generation in knowledge markets, namely 
 user activity and subject POV (perspective). --Figure: Plot to show user activity and subject POV distributions--
