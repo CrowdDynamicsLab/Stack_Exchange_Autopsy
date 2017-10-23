@@ -1,0 +1,48 @@
+\section{Evaluating Our Proposed Models}
+In this section we examine our proposed models from three different perspectives: the accuracy of fitting content generation time series observed in our dataset (Section 6.1), the performance of predicting content volume in long and short run (Section 6.2), and the perplexity of characterizing content generation dynamics at early stage (Section 6.3).
+
+\subsection{Model Fitting}
+We fit each variant of production model for each content type to the observed time series in each Stack Exchange website. Notice that among the different variants of production models (based on the basis and aggregate functions), the models using power or exponent basis have a parsimonious set of parameters. For example, answer generation model using power/exponential basis function requires only three parameters for interactive essential interaction, and four parameters for remaining interaction types. In contrast, answer generation model using sigmoid function requires five parameters for interactive essential interaction, and six parameters for remaining interaction types. 
+
+\textbf{Parameter Estimation.} Our parameter learning process has three sequential steps enforced by the content dependency among question, answer and comment. Therefore, we first learn the best-fit parameters for modeling question, followed by answer, followed by comment. At each step, we use the parameters learnt in earlier steps to generate input. 
+
+%Method ‘trf’ (Trust Region Reflective) is motivated by the process of solving a system of equations, which constitute the first-order optimality condition for a bound-constrained minimization problem as formulated in [STIR]. The algorithm iteratively solves trust-region subproblems augmented by a special diagonal quadratic term and with trust-region shape determined by the distance from the bounds and the direction of the gradient. This enhancements help to avoid making steps directly into bounds and efficiently explore the whole space of variables. To further improve convergence, the algorithm considers search directions reflected from the bounds. To obey theoretical requirements, the algorithm keeps iterates strictly feasible. With dense Jacobians trust-region subproblems are solved by an exact method very similar to the one described in [JJMore] (and implemented in MINPACK). The difference from the MINPACK implementation is that a singular value decomposition of a Jacobian matrix is done once per iteration, instead of a QR decomposition and series of Givens rotation eliminations. For large sparse Jacobians a 2-d subspace approach of solving trust-region subproblems is used [STIR], [Byrd]. The subspace is spanned by a scaled gradient and an approximate Gauss-Newton solution delivered by scipy.sparse.linalg.lsmr. When no constraints are imposed the algorithm is very similar to MINPACK and has generally comparable performance. The algorithm works quite robust in unbounded and bounded problems, thus it is chosen as a default algorithm.
+
+
+
+
+%The NETTIDE for node and link together has a parsimonious set of parameters, namely, β, θ,β′, α, γ and N. Our parameter learn- ing process has two steps: to learn node equation, and to learn link equation. Given the real node growth sequence n(t), we aim to minimize the sum of the square errors: Tt=t0 (n(t) − n∗(t))2, by using the Levenberg-Marquardt algorithm (LM) [28], which is widely used to solve non-linear least squares problems [30, 13, 33]. As for link equation, given the real link and node growth sequence e(t) and n(t), and the temporal fizzling exponent θ learned by the node step, we follow the same procedure as the node step to mini- mize the sum of the square errors: Tt=t0 (e(t) − e∗(t))2.
+
+
+
+%Our model has five parameters, namely, ↵, , , , and C. Notwithstanding the five-dimensional parameter space, the overall DAU evolution shapes allowed by the model ef- fectively has fewer degrees of freedom. The reduction in degrees of freedom is due to the relationship between  and ↵ explored in Section 3.1, the initial DAU growth di↵erences between  and  explored in Section 3.2, and the magnitude of  and  which helps dictate the DAU initial growth rate. Note that C is just a resealing parameter and does not a↵ect the shape of the DAU time series curve. Figures 4(a), 4(b), and 5(a) present three of the most common DAU evolution shapes observed in our datasets.
+
+%The algorithm used to fit the model to the data works as follows. Let D be the set containing all datasets used in this study. We find the an optimal parameter fit to a dataset d 2 D using the Levenberg-Marquardt algorithm [36]. We use the first few years of DAUs data to train the model and the remaining h years data as holdout data to evaluate the model predictions (part of h is also user later in a model selection phase). The Levenberg-Marquardt algorithm only finds a locally optimal solution starting from an initial pa- rameter guess m0 = (↵0, 0, 0, 0, C0). Hence, the initial guess m0 may significantly influence the output of the algo- rithm. To make the algorithm fully automatic and robust we need to find a principled way to provide this initial guess using our datasets.
+%We provide the initial parameter guess by feeding the Levenberg-Marquardt algorithm with other parameter ex- amples obtained in our datasets. It is reasonable to assume that the DAU time series of a given dataset d 2 D is sim- ilar to the DAU time series of some other datasets in D. If we knew the best parameter fit of a dataset with simi- lar DAU time series as d we could then use it to initialize the Levenberg-Marquardt algorithm. But as we don’t know which datasets in D\{d} (D\{d} is the set of all datasets excluding d) have similar DAU, we test all possible datasets as follows. Let LM(d,m0) be the Levenberg-Marquardt fit- ted parameters using initial guess m0. Let fd0 be the best currently known fit to dataset d0 2 D\{d}. At this stage our algorithm produces a set of candidate fitted parameters C = {LM(d,fd0) : d0 2 D\{d}}.
+%Instead of selecting the best fitted parameters from C, we make our parameter selection more robust by selecting at least three fitted parameters from C. We test the quality of the fitted parameters through a model selection phase. In the model selection phase we use the first three to six months of DAU data in the holdout data (comprising of up to 10% of the total data) to assign an L2 error to the predictions of the model with each fitted parameters in C. Using these errors, together with the actual parameter val- ues, we cluster the elements of C using k-medoids clustering (using the R package pamk and the Calinski-Harabasz [8] criteria to automatically select the number of clusters k).
+
+%We choose to use k-medoids instead of the widely used k- means because k-medoids is likely more robust to noise and outliers than k-means, in the same manner that the median of a set of measurements is more robust to noise and outliers than their mean. The output of our algorithm is then the k-medoid cluster c ✓ C that has at least three elements and the smallest average error.
+%More precisely, our algorithm reports c and the medoid of c. The medoid of c is the vector of parameters that best represents all vectors of parameters in c. The above proce- dure must be bootstrapped by manually assigning parame- ter fits to the datasets. But once we automatically obtain the medoid parameter fit of d we can replace its manually initialized value with the automatic one and restart the pro- cess. The R source code of our algorithm is freely available online to be tested on other datasets2.
+
+\textbf{Model Fitting Results.} 
+Best fit models and parameters for different Stack Exchange websites. \textcolor{blue}{Figure: Boxplot to compare the fitting results for different models.}
+
+%We evaluate the overall fitting accuracy using Normalized Root Mean Square Error (NRMSE). Given two series, for example the observed time series of answers $N_a(t)$
+%real node growth sequence n(t) and the corresponding sequence
+%(n(t)−n∗(t))2 n∗(t) given by our model, NRMSE= T t=1
+%a special case when T = 1, NRMSE degenerates to Absolute Per-
+%centage Error (APE(x, x∗ ) = |x−x∗ | ). NRMSE is consistent with
+%x
+%the objective function of the LM algorithm in the sense of L2 nor- m. And also it can be compared between datasets with different scales. We also compare the performance by other standard metric, namely Mean Absolute Percentage Error (MAPE). We get consis- tent conclusion and thus we do not report it for brevity. Table 3 shows the description of the best fitting parameters to four datasets.
+
+\subsection{Forecasting Content Generation} 
+We apply the best-fit production models to predict content volume in long and short run. \textcolor{blue}{Figure: Bar chart to show prediction accuracy for different models along with one or two line charts showing prediction for sample Stack Exchange websites.}
+
+\textbf{Sensitivity to Time Granularity.} 
+We study the effectiveness of our models under different time granularity, e.g., day, week, month, quarter. \textcolor{blue}{Figure: Plot to show prediction accuracy for different time granularity (bar chart)}
+
+\subsection{Parameter Estimation for New Websites} We use parameters learnt from old Stack Exchange websites as priors for new Stack Exchange websites. \textcolor{blue}{Figure: Plot to compare the posteriors learnt using transfer learning with the posteriors learnt using more data points in future (bar chart).}
+
+
+
+

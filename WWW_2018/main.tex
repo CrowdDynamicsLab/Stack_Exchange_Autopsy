@@ -5,6 +5,7 @@
 \usepackage{tikz}
 \usetikzlibrary{bayesnet}
 \usepackage[normalem]{ulem}
+\usepackage{wrapfig}
 \usepackage{xcolor}
 \usepackage{array}
 \newcommand{\hs}[1]{\textcolor{red}{Hari: #1}}
@@ -39,7 +40,8 @@
 
 
 \begin{document}
-\title{Modeling the Dynamics of User Content Generation: A Case Study of Stack Exchange Websites}
+\title[Too Big to Succeed]{Too Big to Succeed: Understanding Successes and Failures at Scale in Knowledge Markets}
+
 \iffalse
 \titlenote{Produces the permission block, and
   copyright information}
@@ -48,17 +50,12 @@
   \texttt{acmart.pdf} document}
 \fi
 
-\author{Author Name}
-%\author{X, Y, Z}
+\author{Anonymous Author}
 \affiliation{%
-  \institution{Department\\
-  Institution}
-  %\streetaddress{P.O. Box 1212}
-  %\city{Urbana-Champaign}
-  %\state{Illinois}
-  %\postcode{61820}
+  \institution{Anonymous Institution}
+  \city{City, Country}
 }
-\email{Email}
+\email{e-mail}
 
 \iffalse
 \author{Ben Trovato}
@@ -127,7 +124,7 @@
 \fi
 
 % The default list of authors is too long for headers}
-\renewcommand{\shortauthors}{B. Trovato et al.}
+%\renewcommand{\shortauthors}{B. Trovato et al.}
 
 \iffalse
 \begin{abstract}
@@ -178,13 +175,19 @@ ACM SIG Proceedings.\footnote{This is an abstract footnote}
 
 \maketitle
 \newpage
-\input{introduction}
-\input{model}
-\input{empirical}
-\input{interpretation}
-\input{diseconomies}
-\input{discussion}
-\input{conclusion}
+\input{1_introduction}
+\input{2_related}
+\newpage
+\input{3_problem}
+\input{4_model}
+\input{5_dataset}
+\input{6_empirical}
+\input{7_interpretation}
+\input{8_diseconomies}
+\input{9_discussion}
+\input{x_conclusion}
+
+%\input{outline}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{sigproc}

@@ -1,0 +1,28 @@
+\section{Characterizing Knowledge Markets}
+In this section we characterize the knowledge markets in Stack Exchange---explaining the best-fit models and their foundations (Section 7.1), revealing two key distributions that control the markets (Section 7.2), and uncovering the stable core that maintains market equilibrium (Section 7.3).
+
+\subsection{Model Interpretation} 
+First, we explain the best-fit models found in Section 6.1. We observe that content generation in Stack Exchange markets are best modeled through the combination of power basis functions and interactive essential interaction, with the exponents lying between 0 and 1. This is known as the Cobb-Douglas production function. In its most standard form for production of a single output $z$ with two inputs $x_1$ and $x_2$, the function is: 
+$$z = ax_1^{\lambda_1}x_2^{\lambda_2}.$$
+Here, coefficient $a$ represents the \emph{total factor productivity}---the portion of output not explained by the amount of inputs used in production. As such, its level is determined by how efficiently the inputs are utilized in production. The exponents $\lambda$s represent the \emph{output elasticity} of the inputs---the percentage change in output that results from the percentage change in a particular input. 
+
+The Cobb-Douglas function provides intuitive explanation for content generation in Stack Exchange markets. In particular, the explanation stands on three phenomena/principles: constant elasticity, diminishing returns, and returns to scale.
+
+\textbf{Constant Elasticity.} In Stack Exchange markets, factors such as user participation and content dependency have \emph{constant elasticity}---percentage increase in any of these inputs will have constant percentage increase in output, as claimed by the corresponding exponents in the model. For example, in academia.stackexchange ($N_A = 5N_q^{0.21}U_a^{0.31}$), 1\% increase in number of answerers leads to 0.31\% increase in number of answers. 
+
+\textbf{Diminishing Returns.} For a particular factor, when the exponent is less than 1, we observe \emph{diminishing returns}---decrease in the marginal (incremental) output as the input is incrementally increased, while the other inputs are kept constant. This \lq law of diminishing returns\rq\ has many interesting implications for the Stack Exchange markets, including the diminishing benefit of having a new participant in a market. For example, in academia.stackexchange, the marginal contribution of the 100th and 200th answerers are 0.21 and 0.11 respectively. Thus, including the 200th participant is likely to be less beneficial compared to the 100th participant. \textcolor{blue}{Figure: Plot to show the examples of diminishing return.}
+
+\textbf{Returns to scale.} The knowledge markets in Stack Exchange vary in terms of input efficiency, as manifested by their \emph{returns to scale}---the increase in output resulting from a proportionate increase in all inputs. If a market has high returns to scale, then greater efficiency is obtained as the market moves from small- to large-scale operations. For example, cstheory.stackexchange has the highest return to scale among all Stack Exchange markets, and therefore, is more likely to succeed at higher scale.
+
+\subsection{Two Key Distributions} 
+Next, we discuss two key distributions that control content generation in knowledge markets, namely participant activity and subject POV (perspective). These two distributions induce the three phenomena reported in section 7.1. 
+
+\textbf{Participant Activity.} The distribution of participant activities implicitly drives a market's return in terms of user participation, as manifested  by the corresponding exponent. For example, in a hypothetical market where each participant contributes equally, the exponent should be 1. In reality, the activities of participants is a long-tailed distribution. While many existing literature assert the distribution as power-law, this in fact is a size dependent distribution controlled by the number of participants. As the number of participants increase, most participants contribute to the head of the distribution, whereas very few join the tail.
+
+\textbf{Subject POV.} Subject POV is ...
+
+\textcolor{blue}{Figure: Plot to show the examples of user activity and subject POV distributions.}
+
+\subsection{Uncovering the Stable Core} 
+Now, we show the presence of a stable core of users that control the dynamic market equilibrium hypothesized by the Cobb-Douglas function.
+
