@@ -1,12 +1,20 @@
-\section{Diseconomies of Scale}
-In this section we discuss the diseconomies of scale that occur in the knowledge markets.
+\section{Failures at Scale}
+In this section we discuss how and why knowledge markets may fail at scale. We first empirically examine diseconomies of scale (Section 8.1), then analyze the effects of scale on market health (Section 8.2), and finally study market stability under user perturbation (Section 8.3).
 
-\subsection{Empirical Observation}
-Backed by the diminishing returns, Stack Exchange websites undergo diseconomies of scale---the ratio of answers to questions go down with the increase in number of users. We compare the economic curves with logistic curves to justify effectiveness in capturing diseconomies of scale. \textcolor{blue}{Figure: Plot to show answer to question ratio vs number of users fit for economic and logistic curves.}
+\subsection{Diseconomies of Scale}
+First, we examine disceconomies of scale---the ratio of answers to questions declining with the increase in number of users. This is important because decrease in answer to question ratio implies increase in the gap between market supply (answer) and demand (question). In fact, if the ratio falls below 1.0, the gap becomes critical---guaranteeing there will be some questions with no answers. We observe disceconomies of scale in most Stack Exchange markets. Figure x shows three examples: academia, android and tex. Among the three markets, academia has the highest diseconomies---if the number of users increase by 100\%, the answer to question ratio declines by a factor of x. \textcolor{blue}{Figure: Plot to show answer to question ratio vs number of users fit for economic and regression models.}
 
-\subsection{Decline in Health} 
-As the health of knowledge markets directly depend on content generation, we investigate the effect of scale on a set of health metrics. \textcolor{blue}{Figure: Plot to show correlation between answer to question ratio and health metrics}
+The Cobb-Douglas curves well fit the empirical trends of diseconomies. We derive these curves by dividing the answer models by the corresponding question models. We get similar curves via log regression as shown in Figure x. Between the two model types, the Cobb-Douglas models provide detailed explanation of the phenomena.
 
-\subsection{Decline in Stability} 
-As the stability of knowledge markets depend on user participation, we investigate the effect of scale on stability. \textcolor{blue}{Figure: Plot to show stability as a function of economic parameters/size/etc.}
+The Cobb-Douglas models well explain the disceconomies of scale. Based on the models, the primary cause of disceconomies is the difference between the diminishing returns of questions and answers for users. In other words, for user input, the marginal question output is higher compared to marginal answer output, i.e., an average user is likely to ask more questions and provide few answers. This causes the ratio of answers to questions to decline with the increase in number of users.
+
+\subsection{Analyzing Health}
+Next, we examine the disadvantage of scale through three health metrics: percentage of questions with at least one answer, percentage of questions with accepted answer, and average number of upvotes per content. The first two metrics capture the utility received by askers, whereas the third metric captures the utility received by any active user. The decline in answer to question ratio may cause decline in the first two health metrics. In fact, if the ratio falls below 1.0, it guarantees the decline of these metrics. Figure x shows the disadvantage of scale through health metrics for three markets: academia, android and tex. We observe that all three health metrics decline at scale. \textcolor{blue}{Figure: Plot to show the decline of health metrics at scale.}
+
+We cluster the markets based on model parameters and examine their health. In particular, we use kmeans clustering with silhouette analysis to determine two clusters. Figure x shows the clusters in a 3d space, reduced via Isomap reduction. Figure y shows the health summary for the two clusters. There exists a clear gap between the health of the two clusters. The first group is somewhat more robust to scale, whereas the second group is vulnerable at scale. \textcolor{blue}{Figure: Plot to show clusters and cluster health.}
+
+\subsection{Effects on Stability}
+Now, we study market stability under user perturbation. We concentrate on how many users
+As the stability of knowledge markets depend on user participation, we investigate the effect of scale on stability. \textcolor{blue}{Yet to add details. Figure: Plot to show stability as a function of economic parameters/size/etc.}
+
 

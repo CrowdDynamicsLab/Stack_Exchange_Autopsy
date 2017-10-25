@@ -1,15 +1,16 @@
 \section{Modeling Knowledge Markets}
-In this section we introduce production models to capture content generation dynamics in real-world knowledge markets. We first draw an analogy between economic production and content generation (Section 4.1), and then report the content generation factors in knowledge markets (Section 4.2). Next, we concentrate on the knowledge markets in Stack Exchange networks---presenting production models to capture content generation dynamics for different content types (Section 4.3).
+In this section we introduce economic production models to capture content generation dynamics in real-world knowledge markets. We first draw an analogy between economic production and content generation (Section 4.1), and then report the content generation factors in knowledge markets (Section 4.2). Next, we concentrate on the knowledge markets in Stack Exchange networks---presenting production models for different content types (Section 4.3).
 
 \subsection{Production Analogy} 
-We conceptualize content generation in knowledge markets as economic production. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output}. An economic output contributes to the utility received by the market participants. We assert that participants of a knowledge market function as labor to generate knowledge contents such as questions and answers, which in turn contribute to the utility received by these participants. Motivated by this analogy, we use macroeconomic production models to capture content generation dynamics in knowledge markets. In these models, instead of directly modeling content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic.
+Economic production well describe content generation in knowledge markets. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output}. We assert that participants of a knowledge market function as labor to generate contents such as questions and answers. Similar to the economic output, these knowledge contents contribute to the utility received by the market participants. Motivated by this analogy, we use macroeconomic production models to capture content generation dynamics in knowledge markets. In these models, instead of directly modeling content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic.
 
 %Motivated by the macroeconomic production models, we focused on designing factor based model for user content generation in CQA platforms. Instead of directly modeling user content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic. From this point forward, we report the factors of content generation for different content types, discuss basis functions to capture the effect of a single factor and aggregate functions to capture the interaction among multiple factors, and introduce alternative models based on the basis and aggregate functions.
 
 %We conceptualize content generation in knowledge markets as economic production. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services--the output. An output is a good or service that has value and contributes to the utility received by individuals. We assert that users of a knowledge market function as labor to generate content, which has value and contributes to the utility received by the users. In the following subsections, we report the factors of production or inputs for different types of content generation, present a production function to capture the relationship between the output and the inputs of production, and introduce a set of growth models that capture long-run growth of different types of content.
 
 \subsection{Factors of Content Generation} 
-We recognize the key factors of content generation in knowledge markets. In economics, \emph{factors} refer to inputs that are used in the production process to produce output. We recognize two factors that are used for generating contents in knowledge markets, namely user participation and content dependency.
+%We recognize the key factors of content generation in knowledge markets. In economics, \emph{factors} refer to inputs that are used in the production process to produce output. 
+There are two key factors that affect content generation in knowledge markets, namely user participation and content dependency.
 
 \textbf{User Participation.} The number of active users is the most important factor in deciding the quantity of generated content. The participation of more users induce more questions, answers, and other contents.
 
@@ -35,16 +36,20 @@ We recognize the key factors of content generation in knowledge markets. In econ
 \end{wrapfigure}
 \fi
 
-\textbf{Content Dependency.} While user participation is vital for content generation, content dependency also affects the quantity of generated content for different types. Content dependency implies the dependency of a type of content on other type of content(s). For example, answer generation relies on question generation---in absence of questions, there will be no answers, even in the presence of many potential answerers. 
+\textbf{Content Dependency.} While user participation is vital for content generation, content dependency also affects the quantity of generated content for different types. Content dependency implies the dependency of a type of content on other type of content(s). For example, answer generation relies on question generation. In absence of questions, there will be no answers, even in the presence of many potential answerers. 
 
 \subsection{Modeling Markets in Stack Exchange}
-Now, we concentrate on modeling the knowledge markets in Stack Exchange, where each market primarily generates three types of contents: question, answer, and comment. We treat these contents as the output from the knowledge markets, and identify the corresponding factors based on the discussion in Section 4.2. These factors lead to the following functional relationships in Stack Exchange markets (See Table~\ref{tab:notations} for notations).
+\textcolor{blue}{This subsection requires restructuring.}
+We design production models for different types of contents in Stack Exchange. Each market in Stack Exchange primarily generates three types of contents: question, answer, and comment. Based on the factors in Section 4.2, we propose the following relationships for these contents types (See Table~\ref{tab:notations} for notations).
 
 \begin{table}[thb]
-	\centering
-    \vspace{-0.5\baselineskip}
+	\vspace{-0.5\baselineskip}
+	\caption{Notations used in the model}
+    \vspace{-\baselineskip}
+    \label{tab:notations}
+	\begin{center}    
 	\begin{tabular}{cl}
-	\hline \textbf{Symbol} & \textbf{Definition}\\ \hline
+	\toprule Symbol & Definition\\ \midrule
 	$U_q(t)$ & \# of users who asked questions at time $t$\\ 
 	$U_a(t)$ & \# of users who answered questions at time $t$\\
 	$U_c(t)$ & \# of users who made comments at time $t$\\
@@ -53,11 +58,10 @@ Now, we concentrate on modeling the knowledge markets in Stack Exchange, where e
 	$N_c^q(t)$ & \# of comments to active questions at time $t$\\
 	$N_c^a(t)$ & \# of comments to active answers at time $t$\\
     $N_c(t)$ & \# of comments to active questions/answers at time $t$\\
-	$f_w$ & The functional relationship for content $w$\\ \hline
+	$f_w$ & The functional relationship for content $w$\\ \bottomrule
 	\end{tabular}
-    \caption{Notations used in the model}
-    \vspace{-2\baselineskip}
-    \label{tab:notations}
+    \end{center}
+    \vspace{-\baselineskip}   
 \end{table}
 
 %Figure~\ref{fig:content_factors} shows these factors using notations from Table~\ref{tab:notations}. 
@@ -114,7 +118,7 @@ The aforementioned relationships imply that the number of generated content of e
   \begin{tabular}{m{.28\textwidth}c}
 %    \hline \textbf{Interaction Type} & \textbf{Contour}\\ \hline
     %\begin{minipage}[t]{5cm}
-    \vspace{-10pt}
+    \vspace{-5pt}
     \uline{Essential:} Essential factors are both required for content generation, with zero marginal return for a single factor. For a pair of essential factors, content generation is determined by the more limiting factor: $z = min(y_1, y_2)$. This is known as Liebig's law of the minimum.
     %\end{minipage} 
     &
@@ -123,7 +127,7 @@ The aforementioned relationships imply that the number of generated content of e
     \end{minipage}
     \\ 
     %\begin{minipage}[t]{5cm}
-    \vspace{-10pt}
+    \vspace{-5pt}
     \uline{Interactive Essential:} In interactive essential interaction, we get diminishing return (instead of zero return) for a single factor: $z = y_1y_2$. If each factor is consumed using power basis function, i.e., $y_i = ax^\lambda_i$, it captures Cobb-Douglas production function.
     %\end{minipage} 
     &
@@ -132,7 +136,7 @@ The aforementioned relationships imply that the number of generated content of e
     \end{minipage}
     \\
     %\begin{minipage}[t]{5cm}
-    \vspace{-10pt}
+    \vspace{-5pt}
     \uline{Antagonistic:} For antagonistic factors, content generation is determined solely by the availability of the factor which yields the largest return: $z = max(y_1, y_2)$. This interaction implies that the production process has maximum possible efficiency. 
     %\end{minipage} 
     &
@@ -141,7 +145,7 @@ The aforementioned relationships imply that the number of generated content of e
     \end{minipage}
     \\
     %\begin{minipage}[t]{5cm}
-    \vspace{-10pt}
+    \vspace{-5pt}
     \uline{Substitutable:} Factors that can each support production on their own are substitutable relative to each other: $z = w_1y_1 + w_2y_2$. This implies that there exists some equivalence between the two factors. This is similar to the general additive models.
     %\end{minipage} 
     &
@@ -156,10 +160,8 @@ The aforementioned relationships imply that the number of generated content of e
   \label{tab:interaction}
 \end{table}
 
-\textbf{User to Asker/Answerer/Commenter.} 
-
-
-Computing/predicting number of askers/answerers/commenters from number of users. \textcolor{blue}{Figure: Plot to show the correlation between number of users and number of askers/answerers/commenters}
+\textbf{User to Roles.} 
+We predict the number of askers, answerers, and commenters from the number of users. \textcolor{blue}{Yet to add details. Figure: LV plots to show the r-squared distribution for regression.}
 
 
 
