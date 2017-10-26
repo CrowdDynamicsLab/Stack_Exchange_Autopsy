@@ -1,18 +1,16 @@
 \section{Modeling Knowledge Markets}
-In this section we introduce economic production models to capture content generation dynamics in real-world knowledge markets. We first draw an analogy between economic production and content generation (Section 4.1), and then report the content generation factors in knowledge markets (Section 4.2). Next, we concentrate on the knowledge markets in Stack Exchange networks---presenting production models for different content types (Section 4.3).
+In this section we introduce economic production models to capture content generation dynamics in real-world knowledge markets. We first draw an analogy between economic production and content generation, and report the content generation factors in knowledge markets (Section 4.1). Then, we concentrate on the knowledge markets in Stack Exchange---presenting production models for different content types (Section 4.2).
 
-\subsection{Production Analogy} 
-Economic production well describe content generation in knowledge markets. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output}. We assert that participants of a knowledge market function as labor to generate contents such as questions and answers. Similar to the economic output, these knowledge contents contribute to the utility received by the market participants. Motivated by this analogy, we use macroeconomic production models to capture content generation dynamics in knowledge markets. In these models, instead of directly modeling content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic.
+\subsection{Preliminaries} 
+Economic production well describe content generation in knowledge markets. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output}. We assert that participants of a knowledge market function as labor to generate contents such as questions and answers. Analogous to economic output, these contents contribute to the utility received by the market participants. 
+
+Motivated by the production analogy, we design macroeconomic production models to capture content generation dynamics in knowledge markets. In these models, instead of directly modeling content generation as a dynamic process (function of time), we model it in terms of associated factors which are dynamic. 
+
+There are two key factors that affect content generation in knowledge markets, namely user participation and content dependency. User participation is the most important factor in deciding the quantity of generated content. The participation of more users induce more questions, answers, and other contents. Content dependency also affects the quantity of generated content for different types. Content dependency refers to the dependency of a type of content on other type of content(s). For example, in any knowledge market, answer generation relies on the presence of questions. In absence of questions, there will be no answers, even in the presence of many potential answerers. 
 
 %Motivated by the macroeconomic production models, we focused on designing factor based model for user content generation in CQA platforms. Instead of directly modeling user content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic. From this point forward, we report the factors of content generation for different content types, discuss basis functions to capture the effect of a single factor and aggregate functions to capture the interaction among multiple factors, and introduce alternative models based on the basis and aggregate functions.
 
 %We conceptualize content generation in knowledge markets as economic production. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services--the output. An output is a good or service that has value and contributes to the utility received by individuals. We assert that users of a knowledge market function as labor to generate content, which has value and contributes to the utility received by the users. In the following subsections, we report the factors of production or inputs for different types of content generation, present a production function to capture the relationship between the output and the inputs of production, and introduce a set of growth models that capture long-run growth of different types of content.
-
-\subsection{Factors of Content Generation} 
-%We recognize the key factors of content generation in knowledge markets. In economics, \emph{factors} refer to inputs that are used in the production process to produce output. 
-There are two key factors that affect content generation in knowledge markets, namely user participation and content dependency.
-
-\textbf{User Participation.} The number of active users is the most important factor in deciding the quantity of generated content. The participation of more users induce more questions, answers, and other contents.
 
 \iffalse
 \begin{wrapfigure}{R}{0.15\textwidth}
@@ -36,11 +34,8 @@ There are two key factors that affect content generation in knowledge markets, n
 \end{wrapfigure}
 \fi
 
-\textbf{Content Dependency.} While user participation is vital for content generation, content dependency also affects the quantity of generated content for different types. Content dependency implies the dependency of a type of content on other type of content(s). For example, answer generation relies on question generation. In absence of questions, there will be no answers, even in the presence of many potential answerers. 
-
-\subsection{Modeling Markets in Stack Exchange}
-\textcolor{blue}{This subsection requires restructuring.}
-We design production models for different types of contents in Stack Exchange. Each market in Stack Exchange primarily generates three types of contents: question, answer, and comment. Based on the factors in Section 4.2, we propose the following relationships for these contents types (See Table~\ref{tab:notations} for notations).
+\subsection{Modeling Stack Exchange}
+We design production models for three types of contents in Stack Exchange---question, answer and comment. These content types have the following relationship: (i) answers depend on questions, and (ii) comments depend on questions and answers. Based on user roles and content dependency, we propose the following relationships for these contents types (See Table~\ref{tab:notations} for notations).
 
 \begin{table}[thb]
 	\vspace{-0.5\baselineskip}
@@ -161,7 +156,13 @@ The aforementioned relationships imply that the number of generated content of e
 \end{table}
 
 \textbf{User to Roles.} 
-We predict the number of askers, answerers, and commenters from the number of users. \textcolor{blue}{Yet to add details. Figure: LV plots to show the r-squared distribution for regression.}
+We predict the number of askers, answerers, and commenters from the number of users. 
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[scale=0.45]{Figures/User_to_Roles_R_Squared_LV.pdf}
+\caption{Long caption}
+\end{figure}
 
 
 
