@@ -1,95 +1,52 @@
 \section{Evaluating Our Proposed Models}
-In this section we examine our proposed models from three different perspectives: the accuracy of fitting content generation time series observed in our dataset (Section 6.1), the performance of predicting content volume in long and short run (Section 6.2), and the perplexity of characterizing content generation dynamics at early stage (Section 6.3).
+In this section we identify optimal models (basis and interaction) from three different perspectives: the accuracy of fitting content generation time series observed in our dataset (Section 6.1), the performance of predicting content volume in long run (Section 6.2), and the perplexity of characterizing content generation dynamics at early stage (Section 6.3).
 
 \subsection{Model Fitting}
-We fit each variant of production model for each content type to the observed time series in each Stack Exchange website. Notice that among the different variants of production models (based on the basis and aggregate functions), the models using power or exponent basis have a parsimonious set of parameters. For example, answer generation model using power/exponential basis function requires only three parameters for interactive essential interaction, and four parameters for remaining interaction types. In contrast, answer generation model using sigmoid function requires five parameters for interactive essential interaction, and six parameters for remaining interaction types. 
+We fit each variant of production model (basis and interaction) for each content type to the observed content generation time series (monthly granularity) in each Stack Exchange website. Notice that among the different variants of production models, the models using power or exponent basis have a parsimonious set of parameters. For example, answer generation model using power basis function requires only three parameters for interactive essential interaction (See Section 4.2), and four parameters for remaining interaction types. In contrast, answer generation model using sigmoid basis function requires five parameters for interactive essential interaction, and six parameters for remaining interaction types. 
 
-\textbf{Parameter Estimation.} Our parameter learning process has three sequential steps enforced by the content dependency among question, answer and comment. Therefore, we first learn the best-fit parameters for modeling question, followed by answer, followed by comment. At each step, we use the parameters learnt in earlier steps to generate input. \textcolor{blue}{Yet to add details.}
+\textbf{Parameter Estimation.} Our parameter learning process has three sequential steps enforced by the content dependency among question, answer and comment; we first learn the best-fit parameters for modeling question, followed by answer, followed by comment. At each step, we use the parameters learnt in earlier steps to generate input.
 
-%Method ‘trf’ (Trust Region Reflective) is motivated by the process of solving a system of equations, which constitute the first-order optimality condition for a bound-constrained minimization problem as formulated in [STIR]. The algorithm iteratively solves trust-region subproblems augmented by a special diagonal quadratic term and with trust-region shape determined by the distance from the bounds and the direction of the gradient. This enhancements help to avoid making steps directly into bounds and efficiently explore the whole space of variables. To further improve convergence, the algorithm considers search directions reflected from the bounds. To obey theoretical requirements, the algorithm keeps iterates strictly feasible. With dense Jacobians trust-region subproblems are solved by an exact method very similar to the one described in [JJMore] (and implemented in MINPACK). The difference from the MINPACK implementation is that a singular value decomposition of a Jacobian matrix is done once per iteration, instead of a QR decomposition and series of Givens rotation eliminations. For large sparse Jacobians a 2-d subspace approach of solving trust-region subproblems is used [STIR], [Byrd]. The subspace is spanned by a scaled gradient and an approximate Gauss-Newton solution delivered by scipy.sparse.linalg.lsmr. When no constraints are imposed the algorithm is very similar to MINPACK and has generally comparable performance. The algorithm works quite robust in unbounded and bounded problems, thus it is chosen as a default algorithm.
+We restrict some parameters of our production models to be non-negative, e.g., non-negative exponents in power basis. These restrictions are important because the underlying factors positively affect the output. We use the trust-region reflective algorithm to solve our constrained least square optimization problem. The algorithm is appropriate for solving non-linear least squares problems with constraints.
 
+\textbf{Evaluation Method.} We evaluate the overall fitting accuracy using four metrics: root mean square error (RMSE), normalized root mean square Error (NRMSE), explained variance score (EVS), and Akaike information criterion (AIC). Given two series, the observed series for content $w$, $N_w(t)$, and the prediction $\hat{N_w(t)}$ of the series by a model with $k$ parameters, we compute these metrics as follows: RMSE = $\sqrt{\frac{1}{T}\sum_{t=1}^{T}(N_w(t)-\hat{N_w(t)})^2}$; NRMSE = $\frac{RMSE}{max(N_w(t))-min(N_w(t))}$; EVS = $1-\frac{Var(N_w(t)-\hat{N_w(t)})}{Var(N_w(t))}$; AIC = $T*ln(\frac{1}{T}\sum_{t=1}^{T}(N_w(t)-\hat{N_w(t)})^2)+2k$. The metrics are consistent with the non-linear least squares problem.
 
-
-
-%The NETTIDE for node and link together has a parsimonious set of parameters, namely, β, θ,β′, α, γ and N. Our parameter learn- ing process has two steps: to learn node equation, and to learn link equation. Given the real node growth sequence n(t), we aim to minimize the sum of the square errors: Tt=t0 (n(t) − n∗(t))2, by using the Levenberg-Marquardt algorithm (LM) [28], which is widely used to solve non-linear least squares problems [30, 13, 33]. As for link equation, given the real link and node growth sequence e(t) and n(t), and the temporal fizzling exponent θ learned by the node step, we follow the same procedure as the node step to mini- mize the sum of the square errors: Tt=t0 (e(t) − e∗(t))2.
-
-
-
-%Our model has five parameters, namely, ↵, , , , and C. Notwithstanding the five-dimensional parameter space, the overall DAU evolution shapes allowed by the model ef- fectively has fewer degrees of freedom. The reduction in degrees of freedom is due to the relationship between  and ↵ explored in Section 3.1, the initial DAU growth di↵erences between  and  explored in Section 3.2, and the magnitude of  and  which helps dictate the DAU initial growth rate. Note that C is just a resealing parameter and does not a↵ect the shape of the DAU time series curve. Figures 4(a), 4(b), and 5(a) present three of the most common DAU evolution shapes observed in our datasets.
-
-%The algorithm used to fit the model to the data works as follows. Let D be the set containing all datasets used in this study. We find the an optimal parameter fit to a dataset d 2 D using the Levenberg-Marquardt algorithm [36]. We use the first few years of DAUs data to train the model and the remaining h years data as holdout data to evaluate the model predictions (part of h is also user later in a model selection phase). The Levenberg-Marquardt algorithm only finds a locally optimal solution starting from an initial pa- rameter guess m0 = (↵0, 0, 0, 0, C0). Hence, the initial guess m0 may significantly influence the output of the algo- rithm. To make the algorithm fully automatic and robust we need to find a principled way to provide this initial guess using our datasets.
-%We provide the initial parameter guess by feeding the Levenberg-Marquardt algorithm with other parameter ex- amples obtained in our datasets. It is reasonable to assume that the DAU time series of a given dataset d 2 D is sim- ilar to the DAU time series of some other datasets in D. If we knew the best parameter fit of a dataset with simi- lar DAU time series as d we could then use it to initialize the Levenberg-Marquardt algorithm. But as we don’t know which datasets in D\{d} (D\{d} is the set of all datasets excluding d) have similar DAU, we test all possible datasets as follows. Let LM(d,m0) be the Levenberg-Marquardt fit- ted parameters using initial guess m0. Let fd0 be the best currently known fit to dataset d0 2 D\{d}. At this stage our algorithm produces a set of candidate fitted parameters C = {LM(d,fd0) : d0 2 D\{d}}.
-%Instead of selecting the best fitted parameters from C, we make our parameter selection more robust by selecting at least three fitted parameters from C. We test the quality of the fitted parameters through a model selection phase. In the model selection phase we use the first three to six months of DAU data in the holdout data (comprising of up to 10% of the total data) to assign an L2 error to the predictions of the model with each fitted parameters in C. Using these errors, together with the actual parameter val- ues, we cluster the elements of C using k-medoids clustering (using the R package pamk and the Calinski-Harabasz [8] criteria to automatically select the number of clusters k).
-
-%We choose to use k-medoids instead of the widely used k- means because k-medoids is likely more robust to noise and outliers than k-means, in the same manner that the median of a set of measurements is more robust to noise and outliers than their mean. The output of our algorithm is then the k-medoid cluster c ✓ C that has at least three elements and the smallest average error.
-%More precisely, our algorithm reports c and the medoid of c. The medoid of c is the vector of parameters that best represents all vectors of parameters in c. The above proce- dure must be bootstrapped by manually assigning parame- ter fits to the datasets. But once we automatically obtain the medoid parameter fit of d we can replace its manually initialized value with the automatic one and restart the pro- cess. The R source code of our algorithm is freely available online to be tested on other datasets2.
-
-\textbf{Model Fitting Results.} 
-Now, we present the model fitting results. \textcolor{blue}{Yet to add details.}
+\textbf{Fitting Results.} Now, we compare the fitting accuracy of production models for all markets in Stack Exchange, using the four metrics, each summarized via mean, for each content type (question, answer and comment). We found that the models with exponential and sigmoid basis do not fit the data for many Stack Exchange. Accordingly, in Table~\ref{tbl:model_fit}, we only present the results for production models with power basis and different interaction types. Notice that the models with interactive essential interaction outperform the remaining models for all metrics and content types. We performed paired t-tests to determine if the improvements for interactive essential interaction are statistically significant; the results are positive with $p<<0.001$.
 
 \begin{table}[ht]
 	\vspace{-0.5\baselineskip}
-	\caption{Model Fitting Results}
+	\caption{The comparison of fitting accuracy of production models (with power basis and different interaction types) for all Stack Exchange. The models with interactive essential interaction outperform the remaining models for all metrics and content types. The improvements for interactive essential interaction are statistically significant---validated through paired t-tests.}
     \vspace{-\baselineskip}
 	\label{tbl:model_fit}
 	\begin{center}
-	\begin{tabular}{llccc}
+	\begin{tabular}{llcccc}
     \toprule
-    Content & Interaction Type & RMSE & NRMSE & EVS\\
+    \multirow{2}{*}{Content} & Interaction & Avg. & Avg. & Avg. & Avg.\\
+    & Type & RMSE & NRMSE & EVS & AIC\\
     \midrule
-    Question & NA & 25.742 & 0.086 & 0.791\\
+    Question & Single Factor & 25.742 & 0.086 & 0.791 & 104.473\\
     \midrule
-    \multirow{4}{*}{Answer} & Essential & 70.307 & 0.092 & 0.789\\
-    & Interactive Essential & 64.624 & 0.083 & 0.825\\
-    & Antagonistic & 72.765 & 0.094 &  0.778\\
-    & Substitutable & 68.900 & 0.089 & 0.805\\
+    \multirow{4}{*}{Answer} & Essential & 70.307 & 0.092 & 0.789 & 208.820\\
+    & I. Essential & \textbf{64.624} & \textbf{0.083} & \textbf{0.825} & \textbf{196.395}\\
+    & Antagonistic & 72.765 & 0.094 &  0.778 & 210.958\\
+    & Substitutable & 68.900 & 0.089 & 0.805 & 207.609\\
     \midrule
-    \multirow{4}{*}{Comment} & Essential & 146.644 & 0.084 & 0.833\\
-    & Interactive Essential & 137.228 & 0.081 & 0.845\\
-    & Antagonistic & 155.969 & 0.088 &  0.818\\
-    & Substitutable & 155.433 & 0.089 & 0.820\\
+    \multirow{4}{*}{Comment} & Essential & 146.644 & 0.084 & 0.833 & x\\
+    & I. Essential & \textbf{137.228} & \textbf{0.081} & \textbf{0.845} & x\\
+    & Antagonistic & 155.969 & 0.088 &  0.818 & x\\
+    & Substitutable & 155.433 & 0.089 & 0.820 & x\\
     \bottomrule
 	\end{tabular}
 	\end{center}
     \vspace{-\baselineskip}
 \end{table}
- 
-
-%We evaluate the overall fitting accuracy using Normalized Root Mean Square Error (NRMSE). Given two series, for example the observed time series of answers $N_a(t)$
-%real node growth sequence n(t) and the corresponding sequence
-%(n(t)−n∗(t))2 n∗(t) given by our model, NRMSE= T t=1
-%a special case when T = 1, NRMSE degenerates to Absolute Per-
-%centage Error (APE(x, x∗ ) = |x−x∗ | ). NRMSE is consistent with
-%x
-%the objective function of the LM algorithm in the sense of L2 nor- m. And also it can be compared between datasets with different scales. We also compare the performance by other standard metric, namely Mean Absolute Percentage Error (MAPE). We get consis- tent conclusion and thus we do not report it for brevity. Table 3 shows the description of the best fitting parameters to four datasets.
 
 \subsection{Forecasting Content Generation} 
-We apply the best-fit production models to predict content volume in long and short run. \textcolor{blue}{Yet to add details.}
+We apply production models with power basis and interactive essential interaction to forecast content volume in long run---one year ahead in future. Specifically, we train a model using the first 12 months, and examine how well the model forecasts content dynamics in next 12 months; with monthly granularity. We validate the forecasting capability by examining the overall prediction error (NRMSE) into the future. 
 
-\begin{table}[ht]
-	\vspace{-0.5\baselineskip}
-	\caption{Model Prediction Results}
-    \vspace{-\baselineskip}
-	\label{tbl:model_prediction}
-	\begin{center}
-	\begin{tabular}{llccc}
-    \toprule
-    Content & RMSE & NRMSE\\
-    \midrule
-    Question & 35.412 & 0.291\\
-    Answer & 113.341 & 0.117\\
-    Comment & 195.234 & 0.274\\
-    \bottomrule
-	\end{tabular}
-	\end{center}
-    \vspace{-\baselineskip}
-\end{table}
+We summarize the prediction NRMSE for all Stack Exchange using mean and variance--- (i) question: 0.29 (mean), 0.14 (variance); (ii) answer: 0.12 (mean), 0.09 (variance); (iii) comments: 0.27 (mean) 0.17 (variance). We performed these experiments for different time granularity, e.g., week, month, quarter, and found consistent conclusion. We do not report these results for brevity.
 
-We study the effectiveness of our models under different time granularity, e.g., day, week, month, quarter. \textcolor{blue}{Figure: Yet to add details. Table: Present prediction accuracy for different time granularity (bar chart)}
+\subsection{Parameter Estimation for New Markets} 
+To better predict the success or failure of new markets (6-12 months old), we use model parameters learnt from old markets (at least 36 months old) as priors for new markets. We validate the parameter estimation capability by first training models using first 6 months of new market, and the priors based on the nearest (based on user size) old market, and then examining how well the model forecasts content dynamics in remaining months. 
 
-\subsection{Parameter Estimation for New Websites} 
-We use parameters learnt from old Stack Exchange websites as priors for new Stack Exchange websites. \textcolor{blue}{Yet to add details. Table: Present error in parameter estimation.}
-
-
-
+We summarize the prediction NRMSE for new Stack Exchange using mean and variance--- (i) question: x (mean), x (variance); (ii) answer: x (mean), x (variance); (iii) comments: x (mean) x (variance).
 

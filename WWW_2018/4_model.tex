@@ -2,11 +2,11 @@
 In this section we introduce economic production models to capture content generation dynamics in real-world knowledge markets. We first draw an analogy between economic production and content generation, and report the content generation factors in knowledge markets (Section 4.1). Then, we concentrate on the knowledge markets in Stack Exchange---presenting production models for different content types (Section 4.2).
 
 \subsection{Preliminaries} 
-Economic production well describe content generation in knowledge markets. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output}. We assert that participants of a knowledge market function as labor to generate contents such as questions and answers. Analogous to economic output, these contents contribute to the utility received by the market participants. 
+Economic production mechanisms well describe content generation in knowledge markets. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output}. We assert that participants of a knowledge market function as labor to generate content such as questions and answers. Analogous to economic output, content contributes to participant utility. 
 
 Motivated by the production analogy, we design macroeconomic production models to capture content generation dynamics in knowledge markets. In these models, instead of directly modeling content generation as a dynamic process (function of time), we model it in terms of associated factors which are dynamic. 
 
-There are two key factors that affect content generation in knowledge markets, namely user participation and content dependency. User participation is the most important factor in deciding the quantity of generated content. The participation of more users induce more questions, answers, and other contents. Content dependency also affects the quantity of generated content for different types. Content dependency refers to the dependency of a type of content on other type of content(s). For example, in any knowledge market, answer generation relies on the presence of questions. In absence of questions, there will be no answers, even in the presence of many potential answerers. 
+There are two key factors that affect content generation in knowledge markets, namely user participation and content dependency. User participation is the most important factor in deciding the quantity of generated content. The participation of more users induce more questions, answers, and other contents. Content dependency also affects the quantity of generated content for different types. Content dependency refers to the dependency of one type of content (e.g., answers) on other type of content (e.g., questions). In absence of questions, there will be no answers in a knowledge market, even in the presence of many potential participants who are willing to answer. 
 
 %Motivated by the macroeconomic production models, we focused on designing factor based model for user content generation in CQA platforms. Instead of directly modeling user content generation as a dynamic process (function of time), we model it in terms of associated factors, which themselves are dynamic. From this point forward, we report the factors of content generation for different content types, discuss basis functions to capture the effect of a single factor and aggregate functions to capture the interaction among multiple factors, and introduce alternative models based on the basis and aggregate functions.
 
@@ -35,7 +35,9 @@ There are two key factors that affect content generation in knowledge markets, n
 \fi
 
 \subsection{Modeling Stack Exchange}
-We design production models for three types of contents in Stack Exchange---question, answer and comment. These content types have the following relationship: (i) answers depend on questions, and (ii) comments depend on questions and answers. Based on user roles and content dependency, we propose the following relationships for these contents types (See Table~\ref{tab:notations} for notations).
+Stack Exchange is a network of community question answering websites where each site is based on a focused topic. Each user of Stack Exchange network participates in one or more of these sites based on their interest. Stack Exchange sites are free knowledge markets where participants generate content for non-monetary reputation-based incentives. The sites are diverse in terms of market characteristics, varying in theme (subject matter), size (number of users and volume of activity), and age (number of days in existence). 
+
+We design production models for three types of contents in Stack Exchange: question, answer and comment. These content types have the following relationship: (i) answers depend on questions, and (ii) comments depend on questions and answers. Based on user roles in content generation, and content dependency, we propose the following relationships for the contents types (See Table~\ref{tab:notations} for notation).
 
 \begin{table}[thb]
 	\vspace{-0.5\baselineskip}
@@ -53,7 +55,7 @@ We design production models for three types of contents in Stack Exchange---ques
 	$N_c^q(t)$ & \# of comments to active questions at time $t$\\
 	$N_c^a(t)$ & \# of comments to active answers at time $t$\\
     $N_c(t)$ & \# of comments to active questions/answers at time $t$\\
-	$f_w$ & The functional relationship for content $w$\\ \bottomrule
+	$f_w$ & The functional relationship for content type $w$\\ \bottomrule
 	\end{tabular}
     \end{center}
     \vspace{-\baselineskip}   
@@ -91,7 +93,7 @@ There are two key factors in generating answers: questions, and users who answer
 N_a = f_a(N_q, U_a)
 \end{equation*}
 
-There are three key factors in generating comments: questions, answers, and users who make comments on these questions and answers (aka commenters). 
+There are two types of comments: comments on questions, and comments on answers. Accordingly, there are three key factors in generating comments: questions, answers, and users who make comments (commenters). 
 \begin{equation*}
 N_c^q = f_{c^q}(N_q, U_c)
 \end{equation*}
@@ -102,18 +104,25 @@ N_c^a = f_{c^a}(N_a, U_c)
 N_c = N_c^q + N_c^a
 \end{equation*}
 
-The aforementioned relationships imply that the number of generated content of each type depends on the function describing its factor dependent growth, and the availability of factor(s). These relationships embody three critical assumptions. First, they assume that different content types interact only through their use of factors. Second, they assume that the functional relationships depend on the consumption/usage of each factor--- how each content type consumes/utilizes each of its factors. Third, they assume that the functional relationships depend on the interaction among the factors--- how the factors of a particular content type interact. Based on these assumptions, we specify the functional relationships by first choosing a basis function to capture how a content type consumes its factor(s), and then choosing an interaction type to capture the interaction among factors.
+The aforementioned relationships imply that the number of generated content of each type depends on the function describing its factor dependent growth, and the availability of factor(s). These relationships embody three critical assumptions. First, they assume that different content types interact only through their use of factors. Second, they assume that the functional relationships depend on the consumption or usage of each factor. Third, they assume that the functional relationships depend on the interaction among the factors---how the factors of a particular content type interact. 
 
-\textbf{Basis Function.} We use a basis function to capture the effect of a given factor on a particular content type. While there is a variety of basis functions available for regression, we consider three basis functions widely used in economics and growth modeling, namely power-- $g(x) = ax^{\lambda}$, exponential-- $g(x) = ab^x$, and sigmoid-- $g(x) = \frac{L}{1+e^{k(x-x_0)}}$. 
+Now, we specify the functional relationships by first choosing a basis function to capture how a content type consumes its factor(s), and then choosing an interaction type to capture the interaction among factors.
 
-\textbf{Interaction among the Factors.} We use aggregate functions to capture the interaction among multiple factors of a given content type. In particular, we consider the pairwise interaction functions listed below. 
+\textbf{Basis Function.} We use a basis function to capture the effect of a given factor on a particular content type. While there is a variety of basis functions available for regression, we consider three basis functions widely used in economics and growth modeling: power-- $g(x) = ax^{\lambda}$; exponential-- $g(x) = ab^x$; and sigmoid-- $g(x) = \frac{L}{1+e^{k(x-x_0)}}$. 
+
+\textbf{Interaction among the Factors.} We use aggregate functions to capture the interaction among multiple factors of a given content type. In particular, we consider the pairwise interaction functions listed in Table~\ref{tab:interaction}. 
 
 \begin{table}[h!]
+  \vspace{-0.5\baselineskip}
+  \caption{Pairwise interaction between factors with contour}
+  \vspace{-\baselineskip}
+  \label{tab:interaction}
   \centering
   \begin{tabular}{m{.28\textwidth}c}
 %    \hline \textbf{Interaction Type} & \textbf{Contour}\\ \hline
     %\begin{minipage}[t]{5cm}
-    \vspace{-5pt}
+%    \toprule Interaction Type & Contour\\ \midrule
+	\vspace{-5pt}
     \uline{Essential:} Essential factors are both required for content generation, with zero marginal return for a single factor. For a pair of essential factors, content generation is determined by the more limiting factor: $z = min(y_1, y_2)$. This is known as Liebig's law of the minimum.
     %\end{minipage} 
     &
@@ -123,7 +132,7 @@ The aforementioned relationships imply that the number of generated content of e
     \\ 
     %\begin{minipage}[t]{5cm}
     \vspace{-5pt}
-    \uline{Interactive Essential:} In interactive essential interaction, we get diminishing return (instead of zero return) for a single factor: $z = y_1y_2$. If each factor is consumed using power basis function, i.e., $y_i = ax^\lambda_i$, it captures Cobb-Douglas production function.
+    \uline{Interactive Essential:} In interactive essential interaction, we get diminishing return (instead of zero return) for a single factor: $z = y_1y_2$. If factors are consumed using power basis function, i.e., $y_i = ax^\lambda_i$, it captures Cobb-Douglas production function.
     %\end{minipage} 
     &
     \begin{minipage}{.17\textwidth}
@@ -141,18 +150,17 @@ The aforementioned relationships imply that the number of generated content of e
     \\
     %\begin{minipage}[t]{5cm}
     \vspace{-5pt}
-    \uline{Substitutable:} Factors that can each support production on their own are substitutable relative to each other: $z = w_1y_1 + w_2y_2$. This implies that there exists some equivalence between the two factors. This is similar to the general additive models.
+    \uline{Substitutable:} Factors that can each support production on their own are substitutable relative to each other: $z = w_1y_1 + w_2y_2$. This implies that there exists some equivalence between the two factors. This is analogous to the general additive models.
     %\end{minipage} 
     &
     \begin{minipage}{.17\textwidth}
       \includegraphics[width=\textwidth, height=.975\textwidth]{Figures/Substitutable.pdf}
     \end{minipage}
     \\
+    \bottomrule
 %    \hline
   \end{tabular}
   \vspace{-\baselineskip}
-%  \caption{Pairwise interaction between factors}
-  \label{tab:interaction}
 \end{table}
 
 \textbf{User to Roles.} 
