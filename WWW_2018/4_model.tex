@@ -168,9 +168,12 @@ We combine basis function and interaction type to design production models for d
 \textbf{User Role Distribution.} A fundamental assumption of our model is the awareness of user roles (e.g., asker, answerer, commenter) and their distribution (e.g., how many users are askers?). We empirically observe that all Stack Exchange markets have a stable distribution of user roles. In fact, given the number of users, we can accurately predict the number of participants of a particular role. In Figure~\ref{fig:roles} we show the distribution of $r^2$ for predicting user roles in Stack Exchange markets using linear regression. We observe that, in most markets, the number of participants of a role is a linear function of number of users.
 
 \begin{figure}[hbt]
+\vspace{-\baselineskip}
 \centering
 \includegraphics[scale=0.45]{Figures/User_to_Roles_R_Squared_LV.pdf}
+\vspace{-\baselineskip}
 \caption{The $r^2$ distribution for predicting user roles in Stack Exchange. In most Stack Exchange, the role distribution is stable---as manifested by the high median $r^2$ in letter value plots.}
+\vspace{-\baselineskip}
 \label{fig:roles}
 \end{figure}
 
