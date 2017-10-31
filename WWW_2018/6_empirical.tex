@@ -2,7 +2,7 @@
 In this section we identify optimal models (basis and interaction) from three different perspectives: the accuracy of fitting content generation time series observed in our dataset (Section 6.1), the performance of predicting content volume in long run (Section 6.2), and the perplexity of characterizing content generation dynamics at early stage (Section 6.3).
 
 \subsection{Model Fitting}
-We fit each variant of production model (basis and interaction) for each content type to the observed content generation time series (monthly granularity) in each Stack Exchange website. Notice that among the different variants of production models, the models using power or exponent basis have a parsimonious set of parameters. For example, answer generation model using power basis function requires only three parameters for interactive essential interaction (See Section 4.2), and four parameters for remaining interaction types. In contrast, answer generation model using sigmoid basis function requires five parameters for interactive essential interaction, and six parameters for remaining interaction types. 
+We fit each variant of production model (basis and interaction) for each content type to the observed content generation time series (monthly granularity) in each Stack Exchange. Notice that among the different variants of production models, the models using power or exponent basis have a parsimonious set of parameters. For example, answer generation model using power basis function requires only three parameters for interactive essential interaction (See Section 4.2), and four parameters for remaining interaction types. In contrast, answer generation model using sigmoid basis function requires five parameters for interactive essential interaction, and six parameters for remaining interaction types. 
 
 \textbf{Parameter Estimation.} Our parameter learning process has three sequential steps enforced by the content dependency among question, answer and comment; we first learn the best-fit parameters for modeling question, followed by answer, followed by comment. At each step, we use the parameters learnt in earlier steps to generate input.
 
@@ -14,7 +14,7 @@ We restrict some parameters of our production models to be non-negative, e.g., n
 
 \begin{table}[ht]
 	\vspace{-0.5\baselineskip}
-	\caption{The comparison of fitting accuracy of production models (with power basis and different interaction types) for all Stack Exchange. The models with interactive essential interaction outperform the remaining models for all metrics and content types. The improvements for interactive essential interaction are statistically significant---validated through paired t-tests.}
+	\caption{The comparison of fitting accuracy of production models (with power basis and different interaction types) for all Stack Exchange. The models with interactive essential interaction outperform the remaining models for all metrics and content types. The improvements for interactive essential interaction are statistically significant---validated via paired t-tests.}
     \vspace{-\baselineskip}
 	\label{tbl:model_fit}
 	\begin{center}
@@ -41,9 +41,9 @@ We restrict some parameters of our production models to be non-negative, e.g., n
 \end{table}
 
 \subsection{Forecasting Content Generation} 
-We apply production models with power basis and interactive essential interaction to forecast content volume in long run---one year ahead in future. Specifically, we train a model using the first 12 months, and examine how well the model forecasts content dynamics in next 12 months; with monthly granularity. We validate the forecasting capability by examining the overall prediction error (NRMSE) into the future. 
+We apply production models with power basis and interactive essential interaction to forecast content volume in long run---one year ahead in future. Specifically, we train each model using the content generation data from first 12 months (beyond the ramp period), and then examine how well the model forecasts content dynamics in next 12 months. We validate the forecasting capability by examining the overall prediction error (NRMSE) into the future. 
 
-We summarize the prediction NRMSE for all Stack Exchange using mean and variance--- (i) question: 0.11 (mean), 0.08 (variance); (ii) answer: 0.12 (mean), 0.09 (variance); (iii) comments: 0.11 (mean) 0.10 (variance). We performed these experiments for different time granularity, e.g., week, month, quarter, and found consistent conclusion. We do not report these results for brevity.
+We summarize the prediction NRMSE for all Stack Exchange using mean and variance--- (i) question: 0.11 (mean), 0.08 (variance); (ii) answer: 0.12 (mean), 0.09 (variance); (iii) comments: 0.11 (mean) 0.10 (variance). Notice that the models can forecast future dynamics with high accuracy. We performed these experiments for different time granularity, e.g., week, month, quarter, and found consistent conclusion. We do not report these results for brevity.
 
 \subsection{Parameter Estimation for New Markets} 
 To better predict the success or failure of new markets (6-12 months old), we use model parameters learnt from old markets (at least 36 months old) as priors for new markets. We validate the parameter estimation capability by first training models using first 6 months of new market, and the priors based on the nearest (based on user size) old market, and then examining how well the model forecasts content dynamics in remaining months. 

@@ -2,7 +2,7 @@
 In this section we introduce economic production models to capture content generation dynamics in real-world knowledge markets. We first draw an analogy between economic production and content generation, and report the content generation factors in knowledge markets (Section 4.1). Then, we concentrate on the knowledge markets in Stack Exchange---presenting production models for different content types (Section 4.2).
 
 \subsection{Preliminaries} 
-Economic production mechanisms well describe content generation in knowledge markets. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output} \cite{stanford2008economics}. We assert that participants of a knowledge market function as labor to generate content such as questions and answers. Analogous to economic output, content contributes to participant utility. 
+Economic production mechanisms well describe content generation in knowledge markets. In Economics, \emph{production} is defined as the process by which human labor is applied, usually with the help of tools and other forms of capital, to produce useful goods or services---the \emph{output}~\cite{stanford2008economics}. We assert that participants of a knowledge market function as labor to generate content such as questions and answers. Analogous to economic output, content contributes to participant utility. 
 
 Motivated by the production analogy, we design macroeconomic production models to capture content generation dynamics in knowledge markets. In these models, instead of directly modeling content generation as a dynamic process (function of time), we model it in terms of associated factors which are dynamic. 
 
@@ -37,7 +37,7 @@ There are two key factors that affect content generation in knowledge markets, n
 \subsection{Modeling Stack Exchange}
 Stack Exchange is a network of community question answering websites where each site is based on a focused topic. Each user of Stack Exchange network participates in one or more of these sites based on their interest. Stack Exchange sites are free knowledge markets where participants generate content for non-monetary reputation-based incentives. These markets are diverse, varying in theme (subject matter), size (number of users and volume of activity), and age (number of days in existence). 
 
-We design production models for three primary content types in Stack Exchange: question, answer and comment. These content types have the following relationship: (i) answers depend on questions, and (ii) comments depend on questions and answers. Based on the content dependency and user roles in content generation, we propose the following relationships for question, answer and comment generation in Stack Exchange (See Table~\ref{tab:notations} for notation).
+We design production models for three primary content types in Stack Exchange: questions (the root content), answers (which nest below questions), and comments (which can nest either beneath questions or answers). Based on the content dependency and user roles in content generation, we propose the following relationships for question, answer and comment generation in Stack Exchange (See Table~\ref{tab:notations} for notation).
 
 \begin{table}[thb]
 	\vspace{-0.5\baselineskip}
@@ -55,7 +55,7 @@ We design production models for three primary content types in Stack Exchange: q
 	$N_c^q(t)$ & \# of comments to active questions at time $t$\\
 	$N_c^a(t)$ & \# of comments to active answers at time $t$\\
     $N_c(t)$ & \# of comments to active questions/answers at time $t$\\
-	$f_w$ & The functional relationship for content type $w$\\ \bottomrule
+	$f_x$ & The functional relationship for content type $x$\\ \bottomrule
 	\end{tabular}
     \end{center}
     \vspace{-\baselineskip}   
@@ -83,17 +83,17 @@ We design production models for three primary content types in Stack Exchange: q
 \end{figure}
 \fi
 
-There is a single factor in generating questions: $U_q$ users (aka askers) who ask $N_q$ questions.
+There is a single factor in generating $N_q$ questions: the number of users $U_q$ who ask questions (askers).
 \begin{equation*}
 N_q = f_q(U_q)
 \end{equation*}
 
-There are two key factors in generating answers: questions, and users who answer questions (aka answeres). 
+There are two key factors in generating $N_a$ answers: the number of questions $N_q$, and the number of users $U_a$ who answer questions (answerers). 
 \begin{equation*}
 N_a = f_a(N_q, U_a)
 \end{equation*}
 
-There are two types of comments: comments on questions, and comments on answers. Accordingly, there are three key factors in generating comments: questions, answers, and users who make comments (commenters). 
+There are two types of comments: comments on questions, and comments on answers. Accordingly, there are three key factors in generating $N_c$ comments: the number of questions $N_q$, the number of answers $N_a$, and the number of users $U_c$ who make comments (commenters). 
 \begin{equation*}
 N_c^q = f_{c^q}(N_q, U_c)
 \end{equation*}
@@ -108,9 +108,9 @@ The aforementioned relationships imply that the amount of generated content of e
 
 Now, we transform the functional relationships into production models by first choosing a basis function to capture how a content type consumes its factor(s), and then choosing an interaction type to capture the interaction among factors.
 
-\textbf{Basis Function.} We use basis function to capture the effect of a given factor on a particular content type. While there is a variety of basis functions available for regression, we consider three basis functions widely used in economics and growth modeling: power-- $g(x) = ax^{\lambda}$; exponential-- $g(x) = ab^x$; and sigmoid-- $g(x) = \frac{L}{1+e^{k(x-x_0)}}$. 
+\textbf{Basis Function.} We use a basis function to capture the effect of a given factor on a particular content type. While there is a variety of basis functions available for regression, we consider three basis functions widely used in economics and growth modeling~\cite{fekedulegn1999}: power-- $g(x) = ax^{\lambda}$; exponential-- $g(x) = ab^x$; and sigmoid-- $g(x) = \frac{L}{1+e^{k(x-x_0)}}$. 
 
-\textbf{Interaction among the Factors.} We use aggregate function to capture the interaction among multiple factors of a given content type. Specifically, we consider the pairwise interaction functions listed in Table~\ref{tab:interaction}. 
+\textbf{Interaction among the Factors.} We use an aggregate function to capture the interaction among multiple factors of a given content type. Specifically, we consider the pairwise interaction functions listed in Table~\ref{tab:interaction}. 
 
 \begin{table}[h!]
   \vspace{-0.5\baselineskip}
@@ -165,19 +165,21 @@ Now, we transform the functional relationships into production models by first c
 
 We combine basis function and interaction type to design production models for different content types. For example, answer generation can be modeled using power basis and essential interaction as $N_a = min(A_1N_q^{\lambda_1},A_2U_a^{\lambda_2})$. We consider twelve such possible models (combination of three basis and four interaction type) for answer and comment generation in Stack Exchange.
 
-\textbf{User Role Distribution.} A fundamental assumption of our model is the awareness of user roles (e.g., asker, answerer, commenter) and their distribution (e.g., how many users are askers?). We empirically observe that all Stack Exchange markets have a stable distribution of user roles. In fact, given the number of users, we can accurately predict the number of participants of a particular role. In Figure~\ref{fig:roles} we show the distribution of $r^2$ for predicting user roles in Stack Exchange markets using linear regression. We observe that, in most markets, the number of participants of a role is a linear function of number of users.
+\textbf{User Role Distribution.} A fundamental assumption of our model is the awareness of user roles (e.g., asker, answerer, and commenter) and their distribution (e.g., how many users are askers?). We empirically observe that all Stack Exchange markets have a stable distribution of user roles. In fact, given the number of users, we can accurately predict the number of participants of a particular role. 
+
+We apply linear regression to determine the number of participants $U_x$ of a particular role $x \in \{q, a, c\}$, from the number of users $U$ in a Stack Exchange market. For each market, we compute three distinct coefficient of determination ($R^2$) for predicting three roles (asker, answerer, and commenter) using linear regression. In Figure~\ref{fig:roles} we show the distribution of $R^2$ for regressing user roles across 156 Stack Exchange markets. We use letter value plots\footnote{The letter-value plot display information about the distribution of a variable~\cite{Hofmann2017}. It conveys precise estimates of tail behavior using letter values; boxplots lack such precise estimation.} to present these distributions---showing precise estimates of their tail behavior. We observe that, in most markets, the $R^2$ values are close to 1. Further, the tail capturing low $R^2$ values consists of markets with relatively small number of monthly users ($<$200) .
 
 \begin{figure}[hbt]
-\vspace{-\baselineskip}
+\vspace{-0.5\baselineskip}
 \centering
 \includegraphics[scale=0.45]{Figures/User_to_Roles_R_Squared_LV.pdf}
 \vspace{-\baselineskip}
-\caption{The $r^2$ distribution for predicting user roles in Stack Exchange. In most Stack Exchange, the role distribution is stable---as manifested by the high median $r^2$ in letter value plots.}
+\caption{The $R^2$ distribution for regressing user roles (asker, answerer, and commenter) across 156 Stack Exchange. In most Stack Exchange, the role distribution is stable---as manifested by the high $R^2$ in letter value plots.}
 \vspace{-\baselineskip}
 \label{fig:roles}
 \end{figure}
 
-\textbf{Number of Users.} The number of users is the only free input to our content generation models; the remaining inputs are functions of number of users. In all these models, the growth or decline of number of users is exogenous---determined outside the model, by non-economic forces. There is a growing body of literature that concentrate on modeling active user growth~\cite{Ribeiro2014}. In this paper, we build upon these works to concentrate on a subsequent problem---the relation between user growth and content generation.
+\textbf{Number of Users.} The number of users is the only free input to our content generation models; the remaining inputs are functions of number of users. In all these models, the growth or decline of number of users is exogenous---determined outside the model, by non-economic forces. There is a growing body of literature that concentrate on modeling active user growth~\cite{Ribeiro2014, zang2016}. In this paper, we build upon these works to concentrate on a subsequent problem---the relation between user growth and content generation.
 
 
 
