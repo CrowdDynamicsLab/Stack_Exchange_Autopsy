@@ -2,42 +2,46 @@
 In this section we discuss how and why knowledge markets may fail at scale. We first empirically examine diseconomies of scale (Section 8.1), then analyze the effects of scale on market health (Section 8.2), and finally study market stability under user perturbation (Section 8.3).
 
 \subsection{Diseconomies of Scale}
-First, we examine disceconomies of scale---the ratio of answers to questions declining with the increase in number of users. The opposite of diseconomies is economies---the ratio of answers to questions increasing with the increase in number of users. The concept of diseconomies is important because the decrease in answer to question ratio implies the increase in the gap between market supply (answer) and demand (question). In fact, if the ratio falls below 1.0, the gap becomes critical---guaranteeing there will be some questions with no answers. We observe disceconomies of scale in most Stack Exchange markets.
-
-Figure~\ref{fig:diseconomy} shows three examples of diseconomies and economies (the reverse of diseconomies): \texttt{cstheory}, \texttt{puzzling} and \texttt{superuser}. Among the three markets, \texttt{superuser} shows strong diseconomies of scale---if the number of users increases by 100\%, the answer to question ratio declines by a factor of x.x. The other two markets are counter examples, where \texttt{cstheory} shows strong economies of scale---if the number of users increases by 100\%, the answer to question ratio increases by a factor of x.x; and \texttt{puzzling} shows weak economies of scale---if the number of users increases by 100\%, the answer to question ratio increases by a factor of x.x. Note that most markets, especially the ones with 500+ monthly active participants, exhibit diseconomies of scale similar to \texttt{superuser}. The markets that exhibit economies of scale are rare; we found four such markets in Stack Exchange: \texttt{cstheory}, \texttt{expressionengine}, \texttt{softwareengineering}, \texttt{hardwarerecs}.
+First, we examine disceconomies of scale---the ratio of answers to questions declining with the increase in number of users. The opposite of diseconomies is economies, when the ratio increases with the increase in number of users. The concept of diseconomies is important because the decrease in answer to question ratio implies the increase in gap between market supply (answer) and demand (question). In fact, if the ratio falls below 1.0, the gap becomes critical---guaranteeing there will be some questions with no answers. 
+%We observe disceconomies of scale in most Stack Exchange markets.
 
 \begin{figure}[hbt]
 \vspace{-0.5\baselineskip}
 \centering
 \includegraphics[scale=0.38]{Figures/Size_vs_Diseconomy.pdf}
 \vspace{-2\baselineskip}
-\caption{Economies and disecnomies of scale: \texttt{cstheory} (strong economies), \texttt{puzzling} (weak economies) and \texttt{superuser} (strong diseconomies). Most markets exhibit diseconomies of scale similar to \texttt{superuser}.}
+\caption{Economies and diseconomies of scale: the ratio of answers to questions increasing (economies) or decreasing (diseconomies) with the increase in number of users. Examples: \texttt{cstheory} (strong economies), \texttt{puzzling} (weak economies) and \texttt{superuser} (strong diseconomies). Most markets exhibit diseconomies of scale.}
 \vspace{-\baselineskip}
 \label{fig:diseconomy}
 \end{figure}
 
-The Cobb-Douglas curves well fit the empirical trends of economies and diseconomies. We derive these curves by dividing the answer models by the corresponding question models. We get similar curves via log regression as shown in Figure~\ref{fig:diseconomy}. Between the two model types, the Cobb-Douglas models provide better explanation.
+In Figure~\ref{fig:diseconomy} we present the economies and diseconomies of scale in three Stack Exchange markets: \texttt{cstheory}, \texttt{puzzling} and \texttt{superuser}. We choose these examples to cover three cases: strong diseconomies, strong economies, and weak economies. Among the three markets, \texttt{superuser} shows strong diseconomies of scale: if the number of users increases by 1\%, then answer to question ratio declines by 0.95\%. The other two markets show economies of scale, where \texttt{cstheory} shows strong economies: if the number of users increases by 1\%, then answer to question ratio increases by 0.8\%; and \texttt{puzzling} shows weak economies: if the number of users increases by 1\%, then answer to question ratio increases by 0.2\%. Note that most markets, especially the ones with more than 500 monthly active participants, exhibit diseconomies of scale similar to \texttt{superuser}. Only five markets exhibit economies of scale in Stack Exchange: \texttt{cstheory}, \texttt{expressionengine}, \texttt{puzzling}, \texttt{ja\_stackoverflow}, and \texttt{softwareengineering}.
 
-The Cobb-Douglas models well explain the economies and disceconomies of scale. Based on the models, the primary cause of disceconomies is the difference between the diminishing returns of questions and answers for users. In other words, in most market, for user input, the marginal question output is higher compared to marginal answer output, i.e., an average user is likely to ask more questions and provide few answers. This causes the ratio of answers to questions to decline with the increase in number of users.
+The Cobb-Douglas curves well fit the empirical trends of economies and diseconomies (as shown in Figure~\ref{fig:diseconomy}). We derive these curves by dividing the answer models by the corresponding question models, and subsequently developing curves that capture economies and diseconomies ($N_{a/q}$) as a function of number of users (system size). We get similar curves via log regression. Between the two model types, the Cobb-Douglas models provide better explanation.
+
+The Cobb-Douglas models well explain the economies and disceconomies of scale. As per the models, the primary cause of disceconomies is the difference between the diminishing returns of questions and answers for user participation. In other words, in most market, for user input, the marginal question output is higher compared to marginal answer output, i.e., an average user is likely to ask more questions and provide few answers. This causes the ratio of answers to questions to decline with the increase in number of users. 
 
 \subsection{Analyzing Health}
-Next, we examine the disadvantage of scale through three health metrics: $H_1.$ percentage of answered questions (questions with at least one answer), $H_2.$ percentage of questions with accepted answer, and $H_3$. average number of upvotes per content. The first two metrics capture the utility received by askers, whereas the third metric captures the utility received by any active user. The decline in answer to question ratio may cause decline in the first two health metrics. In fact, if the ratio falls below 1.0, it guarantees the decline of these metrics. Figure x shows the disadvantage of scale through health metrics for three markets: academia, android and tex. We observe that all three health metrics decline at scale. \textcolor{blue}{Figure: Plot to show the decline of health metrics at scale.}
-
-We cluster the markets based on model parameters and examine their health. In particular, we use kmeans clustering with silhouette analysis to determine two clusters. Figure x shows the clusters in a 3d space, reduced via Isomap reduction. Figure y shows the health summary for the two clusters. There exists a clear gap between the health of the two clusters. The first group is somewhat more robust to scale, whereas the second group is vulnerable at scale.
+Next, we examine the disadvantage of scale through two health metrics--- $H_1:$ fraction of answered questions (questions with at least one answer); and $H_2:$ fraction of questions with accepted answer (questions for which asker marked an answer as accepted). $H_1$ and $H_2$ capture the true gap between market supply (answer) and demand (question). The increase in number of users may cause decline in $H_1$ and $H_2$, as both metrics are related to the ratio of answer to questions. In fact, if the ratio falls below 1.0, it guarantees the decline of both metrics. 
 
 \begin{figure}[hbt]
 \vspace{-0.5\baselineskip}
 \centering
 \includegraphics[scale=0.38]{Figures/Size_vs_Health.pdf}
 \vspace{-2\baselineskip}
-\caption{Long caption}
+\caption{Health advantage and disadvantage of scale: the fraction of answered questions ($H_1$) and the fraction of questions with accepted answer ($H_2$) increasing (advantage) or decreasing (disadvantage) with the increase in number of users. Examples: \texttt{cstheory} (advantage), \texttt{puzzling} (neutral) and \texttt{superuser} (disadvantage). Most markets exhibit disadvantage at scale.}
 \vspace{-\baselineskip}
 \label{fig:health}
 \end{figure}
 
+In Figure~\ref{fig:diseconomy} we present the advantage and disadvantage of scale (through $H_1$ and $H_2$) for three Stack Exchange markets: \texttt{cstheory}, \texttt{puzzling} and \texttt{superuser}. We observe that the results are consistent with our analysis of economies and diseconomies---\texttt{cstheory} exhibit health advantage at scale, \texttt{puzzling} remains stable, whereas \texttt{superuser} exhibit disadvantage at scale. These three examples cover the possible health effects of scale in knowledge markets. 
+
+%We cluster the markets based on model parameters and examine their health. In particular, we use kmeans clustering with silhouette analysis to determine two clusters. Figure x shows the clusters in a 3d space, reduced via Isomap reduction. Figure y shows the health summary for the two clusters. There exists a clear gap between the health of the two clusters. The first group is somewhat more robust to scale, whereas the second group is vulnerable at scale.
+
 \subsection{Effects on Stability}
-Now, we study market stability under user perturbation. We concentrate on how many users
-As the stability of knowledge markets depend on user participation, we investigate the effect of scale on stability. \textcolor{blue}{Yet to add details. Figure: Plot to show stability as a function of economic parameters/size/etc.}
+Now, we empirically study market stability under scale changes. By stability, we specifically mean the exchangeability of users, i.e., the gap between the top contributors and other participants in a knowledge market. Studying this gap is important because it can reveal if a market's success or failure depends on a small group of users.  
+
+To empirically study user exchangeability, we define two metrics that reflect the gap between the top contributors and other participants in a knowledge market. The first metric $I_1$ is defined as the ratio of average contribution for top k\% users and bottom k\% users. For computing $I_1$, we measure the contribution of each user as the ratio ($n_{a/q}$) of number of answers provided by the user to the number of questions asked by the user. Notice that $I_1$ is a ratio based metric and we define user contribution to be consistent with this metric. The second metric $I_2$ is defined as the sum of two distance: (i) the distance between the contribution of top k\% users and average k\% users, and(ii) the distance between the contribution of average k\% users and bottom k\% users. For computing $I_2$, we measure the contribution of each user as a tuple ($n_a, n_q$), consisting of the number of answers ($n_a$) provided by the user and the number of questions asked by the user ($n_q$). Notice that $I_2$ is an interval based metric and we define user contribution to be consistent with this metric. While both metrics have certain limitation (to be discussed at Section 9.3), these metrics allow us to comprehend user exchegeability in Stack Exchange.
 
 \begin{figure}[hbt]
 \vspace{-0.5\baselineskip}
@@ -48,5 +52,7 @@ As the stability of knowledge markets depend on user participation, we investiga
 \vspace{-\baselineskip}
 \label{fig:stability}
 \end{figure}
+
+In Figure~\ref{fig:diseconomy} we present the advantage and disadvantage of scale (through $H_1$ and $H_2$) for three Stack Exchange markets: \texttt{cstheory}, \texttt{puzzling} and \texttt{superuser}. We observe that the results are consistent with our analysis of economies and diseconomies---\texttt{cstheory} exhibit health advantage at scale, \texttt{puzzling} remains stable, whereas \texttt{superuser} exhibit disadvantage at scale. These three examples cover the possible health effects of scale in knowledge markets. 
 
 

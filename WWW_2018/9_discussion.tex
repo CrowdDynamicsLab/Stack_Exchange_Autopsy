@@ -1,16 +1,27 @@
 \section{Discussion}
-In this section we discuss the analytical findings of our model (Section 8.1) along with a couple of complementary and alternative models (Section 8.2).
+In this section we discuss the implications of our research (Section 9.1), the limitations of our work (Section 9.2), and  complementary models (Section 9.3).
 
-\subsection{Analytical Findings}
-We present several analytical findings that have implications for different aspects of knowledge markets. \textcolor{blue}{Yet to add details.}
+\subsection{Implications}
+Our work draws from, and has implications for several research threads.
 
-\subsection{Limitation}
-\textcolor{blue}{Yet to add details.}
+\textbf{Power Law of Participation.} Ross Mayfield coined the term \lq Power Law of Participation\rq\---when a small number of community members participate in high engagement activities, while the larger community participate in low threshold activities. We observe power-law of participation in Stack Exchange markets. Stack Exchange supports varieties of activities ranging from low-threshold (e.g., voting) to high-engagement (e.g., collaborative editing, and linking similar questions). We found that a small fraction of users participate in high engagement activities, which require both high effort and experience; whereas a large fraction of users participate in low engagement activities. 
+
+We assert that both low-threshold and high-engagement activities are required for a knowledge market's survival, and should proportionately increase with the increase in number of participants. However, in reality, for most knowledge markets, the user community contributing high-engagement activities remains stable---which creates a gap between market supply and demand for high-engagement activities, and consequently affects market health. 
+
+%He observed that for communities such as Wikipedia, Flickr, and Digg, several high engagement activities (e.g., Wikipedia editing) require collaboration among users, whereas low engagement activities are somewhat unattached.
+
+%\textbf{Controllability.}
+
+%\subsection{Micro-foundations}
+
+\subsection{Limitations}
+Now, we discuss several limitations of our work. First, the economic production models do not account for user growth. While there exists several user growth models for two-sided markets, membership based websites, and online social networks, it would be useful to introduce an economic user growth model that properly complements the production models. A potential direction in this research is to apply Malthusian growth model. Second, the production models inherit the fundamental assumptions of macroeconomics such as an aggregate is homogeneous (without looking into its internal composition), and aggregates are functionally related etc. It would be useful to study these assumptions in detail for knowledge markets. Third, 
+
+
+\subsection{Complementary Models} 
+We considered several alternative models to comprehend the content generation dynamics in knowledge markets. Our first attempt was to model user content generation as \lq self-exciting\rq\ point process. In this attempt, we designed and implemented several variants of Hawkes process. Our second attempt was to model user content generation using \lq stage-structured\rq\ projection matrix. In this attempt, we build variants of Leftkovitch matrix. 
 
 \iffalse
-\subsection{Complementary and Alternative Models}
-We consider several alternative models to comprehend the content generation dynamics in knowledge markets. Our first attempt is to model user content generation as \lq self-exciting\rq\ point process. In this attempt, we design and implement several variants of Hawkes process. Our second attempt is to model user content generation using \lq stage-structured\rq\ projection matrix. In this attempt, we build variants of Leftkovitch matrix. 
-
 \textbf{Hawkes Process.} The Hawkes process is a mathematical model for self-exciting processes that models a sequence of arrivals of some event over time, e.g., natural disasters, gang violence, trade orders.  Each arrival excites the process in the sense that the chance of a subsequent arrival is increased for some time period after the initial arrival. 
 
 Content generation in Stack Exchange websites can be conceptualized as Hawkes process with multiple event types. Here, arrival of certain type of event (e.g., questions) excites the arrival of other types of event (e.g., answers, comments). 
