@@ -1,11 +1,45 @@
 \section{Related Work}
-\textbf{Modeling Activity Dynamics.} There has been a number of works on modeling activity dynamics in online platforms~\cite{wu2011, anderson2012, walk2016}. Notably, Walk et al. modeled user-level (micro-scale) activity dynamics in Stack Exchange using two factors: intrinsic activity decay, and positive peer influence~\cite{walk2016}. While this model can mimic user-level activity dynamics, it can not be used to study content-driven platform success or failure for following reasons: (i) it does not reveal insights on the collective platform dynamics; (ii) it does not concentrate on the eventual success or failure of a platform. Wu et al. proposed a discrete generalized beta distribution (DGBD) model that reveals insights on the collective dynamics of an online platform---notably, the concept of size-dependent distribution.
+Our work draws from, and improves upon, several research threads.
 
-\textbf{Successes and Failures of Networks.} Successes and failures of networks have been widely studied from user growth perspective~\cite{Kumar2006, Backstrom2006, kairam2012, zang2016}. Notably, Backstrom et al. studied the mechanisms of how users join communities in a social network~\cite{Backstrom2006};  Kairam et al. examined diffusion (growth via social ties) and non-diffusion (growth without social ties) process to design models that predict the longetivity of social groups~\cite{kairam2012}. These works, however, do not model active user growth. To capture active user growth, Ribeiro et al. proposed a daily active user (DAU) prediction model for membership based websites~\cite{Ribeiro2014}; the model classifies these websites as sustainable and unsustainable.
+\textbf{Sustainability.} There is a relatively recent body of work studying sustainability in knowledge markets. Notably, \citet{srba2016stack} conducted a case study on why StackOverflow, the largest and oldest of the networks on StackExchange, is failing. They reveal some insights into market failure such as novice and negligent users generating low quality content perpetuating the decline of the network. However, they do not present a systematic way to understand and prevent failures in knowledge markets. \citet{wu2016} introduced a framework for understanding the user strategies in a knowledge market---revealing the importance of diverse user strategies for sustainable markets. %In this paper, we present an alternative model that provides many interesting insights including sustainability.
 
-\textbf{Modeling CQA Websites.} 
+\textbf{Activity Dynamics.} There have been a number of papers on modeling the activity dynamics of online platforms~\cite{wu2011, anderson2012, walk2016}. \citet{walk2016} modeled user-level (micro-scale) activity dynamics in StackExchange using two factors: intrinsic activity decay, and positive peer influence. However, the model proposed there can not be used to study content-driven success or failure of online platforms because \begin{enumerate*}
+    \item it does not reveal insights on the collective platform dynamics, and
+\item it does not concentrate on the eventual success or failure of a platform\end{enumerate*}. \citet{wu2011} proposed a discrete generalized beta distribution (DGBD) model that reveals several insights into the collective dynamics, notably the concept of a size dependent distribution. In this paper, we improve upon the concept of a size dependent distribution.
 
+\textbf{Scale Study.} \citet{lin2017} examined Reddit communities to characterize the effect of user growth in voting patterns, linguistic patterns, and community network patterns. The study reveals that these patterns do not change much after a massive growth in the size of the user community. In this paper, we examine the consequence of scale on knowledge markets from a different perspective by using a set of health and stability metrics.
 
+\textbf{Stability.} Successes and failures of networks have been studied from the perspective of stability. \citet{patil2013} studied the dynamics of group stability in social networks. They define stability based on the average increase or decrease in member growth. Our paper examines stability in a different manner---namely, by considering the relative exchangability of users as a function of scale.
 
-\textbf{Modeling Markets.} 
+\textbf{User Growth.} Successes and failures of networks have also been widely studied from the perspective of user growth~\cite{Kumar2006, Backstrom2006, kairam2012, zang2016}. Notably, \citet{Backstrom2006} studied the mechanisms that underpin of how users join communities in a social network; \citet{kairam2012} examined diffusion (growth via social ties) and non-diffusion (growth without social ties) processes to design models that predict the longevity of social groups. These works, however, do not model active user growth. To capture active user growth, \citet{Ribeiro2014} proposed a daily active user (DAU) prediction model for membership based websites; the model classifies membership based websites as sustainable and unsustainable. While this perspective is important, we argue that the success and failure of networks based on their \emph{content production} can perhaps be more meaningful.
+
+\textbf{Content Generation.} Analyzing patterns of user content generation is crucial for developing principled content generation models. \citet{Guo2009} analyzed three social networks and revealed the stretched exponential distribution of user contribution. In this paper, we argue that the distribution of user contribution is size-dependent in CQA networks.
+
+%\subsection{Modeling User Activity and Content}
+%First, we discuss the prior works in modeling user activity and content generation in online platforms.
+
+%\subsection{Modeling Network Success and Failure}
+%Now, we discuss the related works on network success and failure.
+
+\textbf{Modeling CQA Websites.} \citet{furtado2013} explore user behavior
+profiles and their dynamics in five StackExchange networks by performing an
+agglomerative clustering on manually specified user attributes. This can be
+viewed as a providing an understanding of behavior dynamics at a ``micro''
+level (at the level of individual users). A major difference of our work
+from theirs is that in this paper we take a ``macro'' view of the behavior
+dynamics of CQA networks by looking at the behavior of an entire network as
+a function of its user population. \citet{Kumar2010} proposes taking an
+economic view of CQA networks, like we do, but under their formulation
+users must be on one-and-only-one side of the two-sided market. Our model
+differs in that it does not make any assumption about the presence or
+absence of overlap in the group of users that provide answers and the group
+of users that provide questions. Furthermore, their model does not provide
+a systematic way of understanding the amount of \emph{content} the market
+generates. Rather, they focus on the growth of the two kinds of users.
+\citet{Yang2015} identifies the scalability problem of CQA networks that we
+study here---namely, the volume of question content eventually subsumes the
+capacity of the answerers within the community. Understanding and modeling
+this phenomenon is one of the goals of this paper.
+
+%\textbf{Modeling Markets.} 
 
